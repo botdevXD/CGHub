@@ -11,7 +11,6 @@ task.spawn(function()
 
     local configLoaderModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/ConfigLoader.lua", true))()
     
-    --local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/Splix%20Lib/Splix%20Lib%20Source.lua", true))()
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/xsx%20Lib/xsx%20Lib%20Source.lua", true))()
 
     -- AIM VIEW MODULE --
@@ -1293,23 +1292,6 @@ task.spawn(function()
             shared.CG_DA_HOOD_CONFIG_TABLE.show_fov_bool = toggleBool
 
             VisualfovCircle.Visible = toggleBool
-
-            --[[
-            VisualfovCircle.Thickness = 2
-            VisualfovCircle.Transparency = 1
-            VisualfovCircle.Visible = true
-            VisualfovCircle.Color = Color3.fromRGB(255, 255, 255)
-            VisualfovCircle.Filled = false
-            VisualfovCircle.Radius = shared.CG_DA_HOOD_CONFIG_TABLE.FOV_RADIUS
-
-            while shared.CG_DA_HOOD_CONFIG_TABLE.show_fov_bool do
-                local mosuePosX, mosuePosY = Services.UserInputService:GetMouseLocation().X, Services.UserInputService:GetMouseLocation().Y
-                VisualfovCircle.Radius = shared.CG_DA_HOOD_CONFIG_TABLE.FOV_RADIUS
-                VisualfovCircle.Position = Vector2.new(mosuePosX, mosuePosY)
-
-                task.wait()
-            end
-            ]]
         end,
     })
 
@@ -1503,71 +1485,7 @@ task.spawn(function()
     -- SETTINGS TAB --
     local SettingsTab = window:Page({Name = "Settings"})
     local SettingsSection = SettingsTab:Section({Name = "Main", Side = "Left"})
-    --local SettingsSectionRight = SettingsTab:Section({Name = "Config", Side = "Right"})
 
-    --[[
-    SettingsSectionRight:ButtonHolder({Buttons = {
-        {
-            "Load",
-            function()
-                configLoaderModule.new(function(configResult)
-                    if configResult == false then
-                        return NotiLib.new("error", "CG Da Hood", "Failed to load config 1!")
-                    end
-
-                    local config_success, config_load_err = pcall(function()
-                        window:LoadConfig(configResult)
-                    end)
-
-                    if not config_success then
-                        warn(config_load_err)
-                        return NotiLib.new("error", "CG Da Hood", "Failed to load config 2!")
-                    end
-
-                    return NotiLib.new("success", "CG Da Hood", "Loaded config, enjoy!")
-                end)
-            end
-        }, 
-        {
-            "Save",
-            function()
-                local currentWindowConfig = window:GetConfig()
-
-                if not currentWindowConfig then
-                    return NotiLib.new("error", "CG Da Hood", "Failed to save config!")
-                end
-
-                setclipboard(tostring(currentWindowConfig))
-
-                NotiLib.new("success", "CG Da Hood", "Config saved to your clipboard!")
-                NotiLib.new("info", "CG Da Hood", "Paste it somewhere safe!")
-            end
-        }
-    }})
-
-    SettingsSection:Label({Name = "UI CREDITS:", Middle = false})
-    SettingsSection:Label({Name = "Matas#3535", Middle = false})
-    SettingsSection:Label({Name = "bored#9316", Middle = false})
-    
-
-    SettingsSection:Toggle({
-        Name = "RGB Theme",
-        Default = false,
-        Callback = function(toggle)
-            shared.CG_DA_HOOD_CONFIG_TABLE.RGB_THEME_BOOL = toggle
-
-            if not toggle then return end
-
-            task.spawn(function()
-                while shared.CG_DA_HOOD_CONFIG_TABLE.RGB_THEME_BOOL do
-                    window:MAKE_IT_RGB()
-                    task.wait()
-                end
-            end)
-        end
-    })
-    ]]
-    
     SettingsSection:Keybind({
         Name = "Menu Keybind",
         KeybindName = "Menu Keybind",
@@ -1779,8 +1697,6 @@ task.spawn(function()
             end)
         end
     })
-
-    -- // Initialisation
 
     if type(window.Initialize) == "function" then
         window:Initialize()
