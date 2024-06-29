@@ -82,9 +82,7 @@ if not loadedGameScript then
     return warn("Failed to load game script")
 end
 
-print("Debug 1")
 safeLoad(loadedGameScript)
-print("Debug 2")
 
 --[[
 ----------------------------
