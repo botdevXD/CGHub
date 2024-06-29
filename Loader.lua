@@ -61,7 +61,13 @@ for _, DependencyName in ipairs(Dependencies) do
     local loadedDependency = safeLoadString(dependencySource)
 
     if loadedDependency then
-        shared.CG_HUB_DEPENDENCIES[DependencyName] = safeLoad(loadedDependency)
+        local dependencyData = safeLoad(loadedDependency)
+        if not dependencyData then
+            warn("Failed to load dependency: " .. DependencyName)
+            break
+        end
+
+        shared.CG_HUB_DEPENDENCIES[DependencyName] = dependencyData
         continue
     end
 
@@ -70,8 +76,7 @@ end
 
 local currentGameSource = getScriptSource(currentPlaceId)
 if not currentGameSource then
-    warn("Failed to fetch game source")
-    return
+    return warn("Failed to fetch game source")
 end
 
 local loadedGameScript = safeLoadString(currentGameSource)
@@ -81,3 +86,12 @@ if not loadedGameScript then
 end
 
 safeLoad(loadedGameScript)
+
+----------------------------
+------- GAMES TO ADD -------
+----------------------------
+
+-- Grand Piece Online
+-- Bloxfruits
+-- Jailbreak
+-- Phantom Forces
