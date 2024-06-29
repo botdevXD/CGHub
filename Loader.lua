@@ -5,10 +5,9 @@ shared.CG_HUB_DEPENDENCIES = shared.CG_HUB_DEPENDENCIES or {}
 if shared.loader_load_screen ~= nil then
     shared.loader_load_screen:Destroy()
     shared.loader_load_screen = nil
-
-    shared.loader_load_screen = game:GetObjects("rbxassetid://18261449357")[1]
 end
 
+shared.loader_load_screen = game:GetObjects("rbxassetid://18261449357")[1]
 shared.loader_load_screen.Parent = game:GetService("CoreGui")
 
 local container = shared.loader_load_screen.Container
@@ -141,9 +140,10 @@ if not loadedGameScript then
     return warn("Failed to load game script")
 end
 
-getfenv(loadedGameScript).shared = shared
-
-safeLoad(loadedGameScript)
+container.Elements.LoadButton.MouseButton1Click:Connect(function()
+    getfenv(loadedGameScript).shared = shared
+    return safeLoad(loadedGameScript)
+end)
 
 --[[
 ----------------------------
