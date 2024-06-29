@@ -54,7 +54,7 @@ local function getDependencySource(depName)
     return fetchedSource and returnSource
 end
 
-for _, DependencyName in pairs(Dependencies) do
+for DependencyIndex, DependencyName in pairs(Dependencies) do
     local dependencySource = getDependencySource(DependencyName)
     local loadedDependency = safeLoadString(dependencySource)
 
@@ -65,7 +65,7 @@ for _, DependencyName in pairs(Dependencies) do
             break
         end
 
-        shared.CG_HUB_DEPENDENCIES[DependencyName] = dependencyData
+        shared.CG_HUB_DEPENDENCIES[DependencyIndex] = dependencyData
         continue
     end
 
@@ -82,7 +82,9 @@ if not loadedGameScript then
     return warn("Failed to load game script")
 end
 
+print("Debug 1")
 safeLoad(loadedGameScript)
+print("Debug 2")
 
 --[[
 ----------------------------
