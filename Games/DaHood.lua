@@ -14,7 +14,7 @@ task.spawn(function()
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/xsx%20Lib/xsx%20Lib%20Source.lua", true))()
 
     -- AIM VIEW MODULE --
-    local CG_AIM_VIEW_LIB = shared.CG_HUB_DEPENDENCIES.DA_HOOD_AIM_VIEW
+    local CG_AIM_VIEW_LIB = shared.CG_HUB_DEPENDENCIES.CG_AIM_VIEW_LIB
 
     -- ESP MODULE --
     local CG_ESP_LIB = shared.CG_HUB_DEPENDENCIES.NEW_CG_ESP_2024

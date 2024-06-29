@@ -81,12 +81,12 @@ end
 
 local loadedGameScript = safeLoadString(currentGameSource)
 if not loadedGameScript then
-    warn("Failed to load game script")
-    return
+    return warn("Failed to load game script")
 end
 
 safeLoad(loadedGameScript)
 
+--[[
 ----------------------------
 ------- GAMES TO ADD -------
 ----------------------------
@@ -95,3 +95,4 @@ safeLoad(loadedGameScript)
 -- Bloxfruits
 -- Jailbreak
 -- Phantom Forces
+]]
