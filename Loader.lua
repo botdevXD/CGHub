@@ -25,6 +25,13 @@ local function safeLoadString(source)
     return success and returnVal
 end
 
+local function safeLoad(callBack)
+    if type(callBack) ~= "function" then return end
+
+    local success, returnVal = pcall(callBack)
+    return success and returnVal
+end
+
 local function getScriptSource(gameId)
     local fetchedSource, returnSource = pcall(function()
         local gamesFolderUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName)
@@ -54,7 +61,7 @@ for _, DependencyName in ipairs(Dependencies) do
     local loadedDependency = safeLoadString(dependencySource)
 
     if loadedDependency then
-        shared.CG_HUB_DEPENDENCIES[DependencyName] = loadedDependency
+        shared.CG_HUB_DEPENDENCIES[DependencyName] = safeLoad(loadedDependency)
         continue
     end
 
@@ -66,3 +73,11 @@ if not currentGameSource then
     warn("Failed to fetch game source")
     return
 end
+
+local loadedGameScript = safeLoadString(currentGameSource)
+if not loadedGameScript then
+    warn("Failed to load game script")
+    return
+end
+
+safeLoad(loadedGameScript)
