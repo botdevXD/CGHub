@@ -1255,8 +1255,6 @@ task.spawn(function()
         Mode = "Toggle",
         flag = "aimlockKeybind",
         Callback = function(Keybind, active)
-            print("HEY")
-
             shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock = not shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock
 
             if not shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock then
