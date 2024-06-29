@@ -1,6 +1,10 @@
 local tweenService = game:GetService("TweenService")
-
+shared.CG_HUB_LOADING = shared.CG_HUB_LOADING or false
 shared.CG_HUB_DEPENDENCIES = shared.CG_HUB_DEPENDENCIES or {}
+
+if shared.CG_HUB_LOADING then return end
+
+shared.CG_HUB_LOADING = true
 
 if shared.loader_load_screen ~= nil then
     shared.loader_load_screen:Destroy()
@@ -147,6 +151,7 @@ container.Elements.LoadButton.MouseButton1Click:Connect(function()
     getfenv(loadedGameScript).shared = shared
     safeLoad(loadedGameScript)
 end)
+shared.CG_HUB_LOADING = false
 
 --[[
 ----------------------------
