@@ -49,7 +49,10 @@ local Services = {
 local Vars = {
     Player = Services.Players.LocalPlayer,
     RemotesFolder = Services.ReplicatedStorage:WaitForChild("Remotes", 5),
-    CommunicationRemotesFolder = Services.ReplicatedStorage:WaitForChild("Remotes", 5):WaitForChild("CommF_", 5)
+    CommunicationRemotesFolder = Services.ReplicatedStorage:WaitForChild("Remotes", 5):WaitForChild("CommF_", 5),
+    EnemiesFolder = workspace:WaitForChild("Enemies", 5),
+    NPCsFolder = workspace:WaitForChild("NPCs", 5),
+    BoatsFolder = workspace:WaitForChild("Boats", 5)
 }
 
 Vars.Character = Vars.Player.Character or Vars.Player.CharacterAdded:Wait()
@@ -72,6 +75,29 @@ local PlayerTab = window:Page({Name = "Player"})
 local VisualsTab = window:Page({Name = "Visuals"})
 local MiscTab = window:Page({Name = "Misc"})
 
+local combatToolNames = {
+    "Dark Blade",
+    "Combat",
+    "Black Leg",
+    "SharkSaw",
+    "Trident",
+    "TripleKatana",
+    "WardenSword"
+}
+
+makeConnection(Vars.Player.CharacterAdded, function(newCharacter)
+    Vars.Character = newCharacter
+end)
+
+local function getNearByEnemies()
+end
+
+local function findCombatTool()
+    if not Vars.Character then return end
+
+    -- ima work on this later
+end
+
 --[[
 
 local args = {
@@ -89,5 +115,4 @@ local args = {
     [2] = "BanditQuest1",
     [3] = 1
 } -- CommF_
-
 ]]

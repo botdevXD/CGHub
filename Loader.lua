@@ -63,8 +63,7 @@ tween6:Play()
 local games = {
     [2788229376] = "DaHood",
     [16033173781] = "DaHood",
-    [7213786345] = "DaHood",
-    [2753915549] = "Bloxfruits"
+    [7213786345] = "DaHood"
 }
 
 local Dependencies = {
