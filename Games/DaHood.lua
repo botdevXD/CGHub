@@ -9,7 +9,7 @@ task.spawn(function()
     NotiLib.new("info", "Da Hood", "join The discord server (copied to clipboard), https://discord.gg/DAssqn8XET")
     NotiLib.new("info", "Da Hood", "Da Hood Script Loading")
     
-    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/xsx%20Lib/xsx%20Lib%20Source.lua", true))()
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/Splix%20Lib/Splix%20Lib%20Source.lua", true))()
 
     -- AIM VIEW MODULE --
     local CG_AIM_VIEW_LIB = shared.CG_HUB_DEPENDENCIES.CG_AIM_VIEW_LIB
@@ -1255,6 +1255,8 @@ task.spawn(function()
         Mode = "Toggle",
         flag = "aimlockKeybind",
         Callback = function(Keybind, active)
+            print("HEY")
+
             shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock = not shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock
 
             if not shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock then
