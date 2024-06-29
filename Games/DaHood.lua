@@ -131,7 +131,8 @@ task.spawn(function()
         HttpService = game:GetService("HttpService"),
         UserInputService = game:GetService("UserInputService"),
         RunService = game:GetService("RunService"),
-        TweenService = game:GetService("TweenService")
+        TweenService = game:GetService("TweenService"),
+        TeleportService = game:GetService("TeleportService")
     }
 
     local MainEvent = Services.ReplicatedStorage:FindFirstChild("MainEvent")
@@ -1680,6 +1681,13 @@ task.spawn(function()
             end
         end
 
+    })
+
+    MiscSection:Button({
+        Name = "Rejoin Server",
+        Callback = function()
+            return Services.TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Vars.Player)
+        end
     })
 
     local MiscSectionRight = MiscTab:Section({Name = "Money Dropper", Side = "Right"})
