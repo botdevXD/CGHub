@@ -26,7 +26,7 @@ local function safeLoadString(source)
 end
 
 local function getScriptSource(gameId)
-    local fetchedSource, returnSource pcall(function()
+    local fetchedSource, returnSource = pcall(function()
         local gamesFolderUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName)
         local gameSourceUrl = gamesFolderUrl .. games[gameId] .. ".lua"
 
@@ -37,7 +37,7 @@ local function getScriptSource(gameId)
 end
 
 local function getDependencySource(depName)
-    local fetchedSource, returnSource pcall(function()
+    local fetchedSource, returnSource = pcall(function()
         local depsFolderUrl = Data.DepsFolder:format(Data.GithubRepOwner, Data.GithubRepName)
         local depSourceUrl = depsFolderUrl .. depName .. ".lua"
 
@@ -48,6 +48,8 @@ local function getDependencySource(depName)
 end
 
 for _, DependencyName in ipairs(Dependencies) do
+    if shared.CG_HUB_DEPENDENCIES[DependencyName] ~= nil then continue end
+
     local dependencySource = getDependencySource(DependencyName)
     local loadedDependency = safeLoadString(dependencySource)
 
@@ -64,5 +66,3 @@ if not currentGameSource then
     warn("Failed to fetch game source")
     return
 end
-
-print("Loaded game source")
