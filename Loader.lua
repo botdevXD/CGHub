@@ -1,3 +1,5 @@
+shared.CG_HUB_DEPENDENCIES = shared.CG_HUB_DEPENDENCIES or {}
+
 local games = {
     [2788229376] = "DaHood",
     [16033173781] = "DaHood",
@@ -14,8 +16,8 @@ local Dependencies = {
 local Data = {
     GithubRepOwner = "botdevXD",
     GithubRepName = "CGHub",
-    GamesFolder = "https://raw.githubusercontent.com/%s/%s/main/Games/",
-    DepsFolder = "https://raw.githubusercontent.com/%s/%s/main/Dependencies/",
+    GamesFolder = "https://raw.githubusercontent.com/%s/%s/main/Games/%s",
+    DepsFolder = "https://raw.githubusercontent.com/%s/%s/main/Dependencies/%s",
 }
 
 local currentPlaceId = game.PlaceId
@@ -34,8 +36,7 @@ end
 
 local function getScriptSource(gameId)
     local fetchedSource, returnSource = pcall(function()
-        local gamesFolderUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName)
-        local gameSourceUrl = gamesFolderUrl .. games[gameId] .. ".lua"
+        local gameSourceUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName, games[gameId] .. ".lua")
 
         return game:HttpGet(gameSourceUrl, true)
     end)
@@ -45,10 +46,9 @@ end
 
 local function getDependencySource(depName)
     local fetchedSource, returnSource = pcall(function()
-        local depsFolderUrl = Data.DepsFolder:format(Data.GithubRepOwner, Data.GithubRepName)
-        local depSourceUrl = depsFolderUrl .. depName .. ".lua"
+        local depUrl = Data.DepsFolder:format(Data.GithubRepOwner, Data.GithubRepName, depName .. ".lua")
 
-        return game:HttpGet(depSourceUrl, true)
+        return game:HttpGet(depUrl, true)
     end)
 
     return fetchedSource and returnSource
@@ -81,6 +81,8 @@ local loadedGameScript = safeLoadString(currentGameSource)
 if not loadedGameScript then
     return warn("Failed to load game script")
 end
+
+getfenv(loadedGameScript).shared = shared
 
 safeLoad(loadedGameScript)
 
