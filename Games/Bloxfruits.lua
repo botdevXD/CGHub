@@ -17,6 +17,22 @@ if shared.CG_CURRENT_WINDOW then
     end)
 end
 
+shared.CG_BLOXFRUITS_CONNECTIONS = shared.CG_BLOXFRUITS_CONNECTIONS or {}
+
+for _, Connection in pairs(shared.CG_BLOXFRUITS_CONNECTIONS) do
+    pcall(Connection.Disconnect, Connection)
+end
+
+table.clear(shared.CG_BLOXFRUITS_CONNECTIONS)
+
+local function makeConnection(event, callback)
+    local connection = event:Connect(callback)
+
+    table.insert(shared.CG_BLOXFRUITS_CONNECTIONS, connection)
+
+    return connection
+end
+
 local ClonedPlaceId = game.PlaceId
 local NotiLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/NOTI_LIB.lua", true))()
 
@@ -35,6 +51,8 @@ local Vars = {
     RemotesFolder = Services.ReplicatedStorage:WaitForChild("Remotes", 5),
     CommunicationRemotesFolder = Services.ReplicatedStorage:WaitForChild("Remotes", 5):WaitForChild("CommF_", 5)
 }
+
+Vars.Character = Vars.Player.Character or Vars.Player.CharacterAdded:Wait()
 
 local Remotes = {
     RigControllerEvent = Services.ReplicatedStorage:WaitForChild("RigControllerEvent", 5),
@@ -73,10 +91,3 @@ local args = {
 } -- CommF_
 
 ]]
-
-PlayerTab:Button({
-    Name = "Test",
-    Callback = function()
-        Remotes.RigControllerEvent:FireServer("weaponChange", "Combat")
-    end
-})
