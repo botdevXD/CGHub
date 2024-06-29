@@ -6,8 +6,8 @@ task.spawn(function()
     local ClonedPlaceId = game.PlaceId
     local NotiLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/NOTI_LIB.lua", true))()
     
-    NotiLib.new("info", "CG Da Hood", "join The discord server (copied to clipboard), https://discord.gg/DAssqn8XET")
-    NotiLib.new("info", "CG Da Hood", "CG's Da Hood Script Loading")
+    NotiLib.new("info", "Da Hood", "join The discord server (copied to clipboard), https://discord.gg/DAssqn8XET")
+    NotiLib.new("info", "Da Hood", "Da Hood Script Loading")
     
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/xsx%20Lib/xsx%20Lib%20Source.lua", true))()
 
@@ -328,7 +328,7 @@ task.spawn(function()
     CG_FLY_LIB.SetAntiCheatBypassedFunction(isAntiCheatDisabled)
     
     if not isRealDaHoodGame() then
-        NotiLib.new("warning", "CG Da Hood", notiMessages.NotRealDH)
+        NotiLib.new("warning", "Da Hood", notiMessages.NotRealDH)
     end
     
     local function isPlayerLoadedCheck()
@@ -410,7 +410,7 @@ task.spawn(function()
         local isStaff = IsPlayerStaff(newPlayer)
 
         if isStaff then
-            NotiLib.new("info", "CG Da Hood", newPlayer.Name .. " IS A STAFF MEMBER !!!!")
+            NotiLib.new("info", "Da Hood", newPlayer.Name .. " IS A STAFF MEMBER !!!!")
         end
     end)
 
@@ -425,7 +425,7 @@ task.spawn(function()
             return Vars.Player:Kick("CG's Da Hood Script failed to load, rejoin and try again!")
         end
     
-        NotiLib.new("info", "CG Da Hood", notiMessages.BypassingAntiCheat)
+        NotiLib.new("info", "Da Hood", notiMessages.BypassingAntiCheat)
 
         local didPlayerDie = false
 
@@ -440,7 +440,7 @@ task.spawn(function()
         until shared.CG_isAntiCheatBypassed or didPlayerDie
     
         if not didPlayerDie then
-            NotiLib.new("info", "CG Da Hood", notiMessages.BypassedAntiCheat)
+            NotiLib.new("info", "Da Hood", notiMessages.BypassedAntiCheat)
         end
 
         repeat
@@ -452,22 +452,22 @@ task.spawn(function()
         end
     end)
     
-    NotiLib.new("info", "CG Da Hood", notiMessages.BypassingAntiCheat)
+    NotiLib.new("info", "Da Hood", notiMessages.BypassingAntiCheat)
 
     repeat
         bypassAntiCheat()
         task.wait()
     until shared.CG_isAntiCheatBypassed
 
-    NotiLib.new("info", "CG Da Hood", notiMessages.BypassedAntiCheat)
+    NotiLib.new("info", "Da Hood", notiMessages.BypassedAntiCheat)
 
-    NotiLib.new("info", "CG Da Hood", notiMessages.WaitingForPlayerToLoad)
+    NotiLib.new("info", "Da Hood", notiMessages.WaitingForPlayerToLoad)
 
     repeat
         task.wait()
     until isPlayerLoadedCheck()
     
-    NotiLib.new("success", "CG Da Hood", notiMessages.PlayerLoadedIn)
+    NotiLib.new("success", "Da Hood", notiMessages.PlayerLoadedIn)
     
     isPlayerLoaded = true
     
@@ -1261,7 +1261,7 @@ task.spawn(function()
                 currentAimLockTarget = nil
             end
 
-            NotiLib.new("info", "CG Da Hood", "Aimlock Enabled: " .. tostring(shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock))
+            NotiLib.new("info", "Da Hood", "Aimlock Enabled: " .. tostring(shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock))
         end,
     })
 
@@ -1537,7 +1537,7 @@ task.spawn(function()
                 local isStaff = IsPlayerStaff(Player)
 
                 if isStaff then
-                    NotiLib.new("info", "CG Da Hood", Player.Name .. " IS A STAFF MEMBER !!!!")
+                    NotiLib.new("info", "Da Hood", Player.Name .. " IS A STAFF MEMBER !!!!")
                 end
             end
         end
@@ -1644,17 +1644,17 @@ task.spawn(function()
         Name = "Redeem codes",
         Callback = function()
             local daHoodCodes = nil
-            NotiLib.new("info", "CG Da Hood", "Fetching Latest Da Hood Codes!")
+            NotiLib.new("info", "Da Hood", "Fetching Latest Da Hood Codes!")
             
             local dh_codes_fetched = pcall(function()
                 daHoodCodes = Services.HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/da%20hood%20codes.json", false))
             end)
 
             if not dh_codes_fetched then
-                return NotiLib.new("error", "CG Da Hood", "Failed To Fetch Latest Da Hood Codes!")
+                return NotiLib.new("error", "Da Hood", "Failed To Fetch Latest Da Hood Codes!")
             end
 
-            NotiLib.new("success", "CG Da Hood", "Fetched Latest Da Hood Codes!")
+            NotiLib.new("success", "Da Hood", "Fetched Latest Da Hood Codes!")
 
             for _, dh_promo_code in ipairs(daHoodCodes) do
                 for index = 1, 100 do
@@ -1723,6 +1723,6 @@ task.spawn(function()
         window:Initialize()
     end
 
-    NotiLib.new("success", "CG Da Hood", "CG's Da Hood Script Loaded!")
-    NotiLib.new("info", "CG Da Hood", "Open and close key is Insert")
+    NotiLib.new("success", "Da Hood", "CG's Da Hood Script Loaded!")
+    NotiLib.new("info", "Da Hood", "Open and close key is Insert")
 end)
