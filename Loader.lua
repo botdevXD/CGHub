@@ -20,6 +20,11 @@ local Data = {
 
 local currentPlaceId = game.PlaceId
 
+local function safeLoadString(source)
+    local success, returnVal = pcall(loadstring, source)
+    return success and returnVal
+end
+
 local function getScriptSource(gameId)
     local fetchedSource, returnSource pcall(function()
         local gamesFolderUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName)
@@ -40,6 +45,16 @@ local function getDependencySource(depName)
     end)
 
     return fetchedSource and returnSource
+end
+
+for _, DependencyName in ipairs(Dependencies) do
+    local depSource = getDependencySource(DependencyName)
+    if not depSource then
+        warn("Failed to fetch dependency source for " .. DependencyName)
+        return
+    end
+
+    loadstring(depSource)()
 end
 
 local currentGameSource = getScriptSource(currentPlaceId)
