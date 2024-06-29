@@ -50,6 +50,10 @@ local window = Library:New({
 
 shared.CG_CURRENT_WINDOW = window
 
+local PlayerTab = window:Page({Name = "Player"})
+local VisualsTab = window:Page({Name = "Visuals"})
+local MiscTab = window:Page({Name = "Misc"})
+
 --[[
 
 local args = {
@@ -69,3 +73,10 @@ local args = {
 } -- CommF_
 
 ]]
+
+PlayerTab:Button({
+    Name = "Test",
+    Callback = function()
+        Remotes.RigControllerEvent:FireServer("weaponChange", "Combat")
+    end
+})
