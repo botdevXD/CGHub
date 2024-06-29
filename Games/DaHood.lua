@@ -166,6 +166,7 @@ task.spawn(function()
         AutoLettuceBool = false,
         auto_mask_toggle = false,
 
+        Speed_Macro_Speed_Amount = 200,
         SpeedMacroToggle = false,
         holdingSpeedMacroKey = false,
 
@@ -912,7 +913,7 @@ task.spawn(function()
                     end
 
                     bodyVelocity.MaxForce = Vector3.new(9e9, 0, 9e9)
-                    bodyVelocity.Velocity = Humanoid.MoveDirection * 200
+                    bodyVelocity.Velocity = Humanoid.MoveDirection * shared.CG_DA_HOOD_CONFIG_TABLE.Speed_Macro_Speed_Amount
                     bodyVelocity.Parent = Vars.Character.PrimaryPart
 
                     task.wait()
@@ -1076,7 +1077,18 @@ task.spawn(function()
             shared.CG_DA_HOOD_CONFIG_TABLE.holdingSpeedMacroKey = not shared.CG_DA_HOOD_CONFIG_TABLE.holdingSpeedMacroKey
         end,
     })
-    
+
+    PlayerSectionRight:Slider({
+        Name = "Macro Speed",
+        Minimum = 10,
+        Maximum = 1000,
+        Default = shared.CG_DA_HOOD_CONFIG_TABLE.Speed_Macro_Speed_Amount,
+        flag = "playermacrospeedflag",
+        Callback = function(Slidervalue)
+            shared.CG_DA_HOOD_CONFIG_TABLE.Speed_Macro_Speed_Amount = Slidervalue
+        end
+    })
+
     PlayerSectionRight:Slider({
         Name = "Fly Speed",
         Minimum = 0,
