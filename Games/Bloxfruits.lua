@@ -41,7 +41,10 @@ NotiLib.new("info", "Bloxfruits", "Bloxfruits Script Loading")
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/Roblox-UI-Libs/main/xsx%20Lib/xsx%20Lib%20Source.lua", true))()
 
+local CG_ESP_LIB = shared.CG_HUB_DEPENDENCIES.CG_ESP_LIB
+
 local Services = {
+    RunService = game:GetService("RunService"),
     Players = game:GetService("Players"),
     ReplicatedStorage = game:GetService("ReplicatedStorage")
 }
@@ -75,6 +78,10 @@ local PlayerTab = window:Page({Name = "Player"})
 local VisualsTab = window:Page({Name = "Visuals"})
 local MiscTab = window:Page({Name = "Misc"})
 
+local MiscSectionLeft = MiscTab:Section({Name = "Main", Side = "Left"})
+local PlayerSectionLeft = PlayerTab:Section({Name = "Main", Side = "Left"})
+local VisualsSectionLeft = VisualsTab:Section({Name = "Main", Side = "Left"})
+
 local combatToolNames = {
     "Dark Blade",
     "Combat",
@@ -90,13 +97,69 @@ makeConnection(Vars.Player.CharacterAdded, function(newCharacter)
 end)
 
 local function getNearByEnemies()
+    local enemies = {}
+
+    for _, Enemy in ipairs(Vars.EnemiesFolder:GetChildren()) do
+        local Humanoid = Enemy:FindFirstChildWhichIsA("Humanoid")
+        if not Humanoid or Humanoid.Health <= 0 then continue end
+
+        table.insert(enemies, Enemy)
+    end
+
+    return enemies
 end
 
 local function findCombatTool()
     if not Vars.Character then return end
 
-    -- ima work on this later
+    local backPack = Vars.Player:FindFirstChildWhichIsA("Backpack")
+    if not backPack then return end
+
+    for _, combatToolName in ipairs(combatToolNames) do
+        local backpackTool = backPack:FindFirstChild(combatToolName)
+        local characterTool = Vars.Character:FindFirstChild(combatToolName)
+        
+        if backpackTool or characterTool then
+            return backpackTool or characterTool
+        end
+    end
 end
+
+VisualsSectionLeft:Toggle({
+    Name = "Box",
+    Default = false,
+    flag = "espBoxes",
+    Callback = function(toggleBool)
+        CG_ESP_LIB.EnableAndDisableBoxes()
+    end,
+})
+
+VisualsSectionLeft:Toggle({
+    Name = "Nametag",
+    Default = false,
+    flag = "espNameTags",
+    Callback = function(toggleBool)
+        CG_ESP_LIB.EnableAndDisableNametags()
+    end,
+})
+
+VisualsSectionLeft:Toggle({
+    Name = "Tracers",
+    Default = false,
+    flag = "espTracers",
+    Callback = function(toggleBool)
+        CG_ESP_LIB.EnableAndDisableTracers()
+    end,
+})
+
+VisualsSectionLeft:Toggle({
+    Name = "Health Bar",
+    Default = false,
+    flag = "espHealthBar",
+    Callback = function(toggleBool)
+        CG_ESP_LIB.EnableAndDisableHealthBar()
+    end,
+})
 
 --[[
 
@@ -116,3 +179,7 @@ local args = {
     [3] = 1
 } -- CommF_
 ]]
+
+makeConnection(Services.RunService.Heartbeat, function()
+    
+end)

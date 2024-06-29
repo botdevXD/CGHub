@@ -63,7 +63,8 @@ tween6:Play()
 local games = {
     [2788229376] = "DaHood",
     [16033173781] = "DaHood",
-    [7213786345] = "DaHood"
+    [7213786345] = "DaHood",
+    [2753915549] = "Bloxfruits"
 }
 
 local Dependencies = {
@@ -134,17 +135,17 @@ for DependencyIndex, DependencyName in pairs(Dependencies) do
     warn("Failed to load dependency: " .. DependencyName)
 end
 
-local currentGameSource = getScriptSource(currentPlaceId)
-if not currentGameSource then
-    return warn("Failed to fetch game source")
-end
-
-local loadedGameScript = safeLoadString(currentGameSource)
-if not loadedGameScript then
-    return warn("Failed to load game script")
-end
-
 container.Elements.LoadButton.MouseButton1Click:Connect(function()
+    local currentGameSource = getScriptSource(currentPlaceId)
+    if not currentGameSource then
+        return warn("Failed to fetch game source")
+    end
+    
+    local loadedGameScript = safeLoadString(currentGameSource)
+    if not loadedGameScript then
+        return warn("Failed to load game script")
+    end
+
     shared.loader_load_screen:Destroy()
     shared.loader_load_screen = nil
 
@@ -162,4 +163,5 @@ shared.CG_HUB_LOADING = false
 -- Bloxfruits
 -- Jailbreak
 -- Phantom Forces
+-- Bee Swarm Simulator
 ]]
