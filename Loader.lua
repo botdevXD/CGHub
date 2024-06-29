@@ -55,6 +55,8 @@ local function getDependencySource(depName)
 end
 
 for DependencyIndex, DependencyName in pairs(Dependencies) do
+    if shared.CG_HUB_DEPENDENCIES[DependencyIndex] ~= nil then continue end
+
     local dependencySource = getDependencySource(DependencyName)
     local loadedDependency = safeLoadString(dependencySource)
 
