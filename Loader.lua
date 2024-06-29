@@ -48,13 +48,15 @@ local function getDependencySource(depName)
 end
 
 for _, DependencyName in ipairs(Dependencies) do
-    local depSource = getDependencySource(DependencyName)
-    if not depSource then
-        warn("Failed to fetch dependency source for " .. DependencyName)
-        return
+    local dependencySource = getDependencySource(DependencyName)
+    local loadedDependency = safeLoadString(dependencySource)
+
+    if loadedDependency then
+        shared.CG_HUB_DEPENDENCIES[DependencyName] = loadedDependency
+        continue
     end
 
-    loadstring(depSource)()
+    warn("Failed to load dependency: " .. DependencyName)
 end
 
 local currentGameSource = getScriptSource(currentPlaceId)
@@ -62,3 +64,5 @@ if not currentGameSource then
     warn("Failed to fetch game source")
     return
 end
+
+print("Loaded game source")
