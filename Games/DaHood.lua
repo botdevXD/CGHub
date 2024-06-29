@@ -17,13 +17,13 @@ task.spawn(function()
     local CG_AIM_VIEW_LIB = shared.CG_HUB_DEPENDENCIES.CG_AIM_VIEW_LIB
 
     -- ESP MODULE --
-    local CG_ESP_LIB = shared.CG_HUB_DEPENDENCIES.NEW_CG_ESP_2024
+    local CG_ESP_LIB = shared.CG_HUB_DEPENDENCIES.CG_ESP_LIB
 
     -- FLY MODULE --
-    local CG_FLY_LIB = shared.CG_HUB_DEPENDENCIES.CG_DA_HOOD_FLY
+    local CG_FLY_LIB = shared.CG_HUB_DEPENDENCIES.CG_FLY_LIB
 
     -- LOW GFX MODULE --
-    local CG_LOW_GFX_LIB = shared.CG_HUB_DEPENDENCIES.CG_LOW_GFX_MODULE
+    local CG_LOW_GFX_LIB = shared.CG_HUB_DEPENDENCIES.CG_LOW_GFX_LIB
     
     local Camera = workspace.CurrentCamera
 
