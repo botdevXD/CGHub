@@ -1,4 +1,61 @@
+local tweenService = game:GetService("TweenService")
+
 shared.CG_HUB_DEPENDENCIES = shared.CG_HUB_DEPENDENCIES or {}
+
+if shared.loader_load_screen ~= nil then
+    shared.loader_load_screen:Destroy()
+    shared.loader_load_screen = nil
+
+    shared.loader_load_screen = game:GetObjects("rbxassetid://18261449357")[1]
+end
+
+shared.loader_load_screen.Parent = game:GetService("CoreGui")
+
+local container = shared.loader_load_screen.Container
+
+local tween1 = tweenService:Create(container, TweenInfo.new(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+    Size = UDim2.new(0, 100, 0, 100)
+})
+
+local tween2 = tweenService:Create(container.Logo, TweenInfo.new(.25, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+    Size = UDim2.new(.5, 0, .5, 0)
+})
+
+tween1:Play()
+tween2:Play()
+tween2.Completed:Wait()
+
+task.wait(.25)
+
+local tween3 = tweenService:Create(container.Logo, TweenInfo.new(.25, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+    Size = UDim2.new(0, 0, 0, 0)
+})
+
+tween3:Play()
+tween3.Completed:Wait()
+
+local tween4 = tweenService:Create(container, TweenInfo.new(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+    Size = UDim2.new(0, 300, 0, 150)
+})
+
+local tween5 = tweenService:Create(container.UICorner, TweenInfo.new(.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+    CornerRadius = UDim.new(0, 6)
+})
+
+
+tween4:Play()
+tween5:Play()
+tween5.Completed:Wait()
+
+container.Logo:Destroy()
+
+container.Elements.Visible = true
+
+local tween6 = tweenService:Create(container.Elements, TweenInfo.new(.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+    Size = UDim2.new(.945, 0, .9, 0)
+})
+
+tween6:Play()
 
 local games = {
     [2788229376] = "DaHood",
