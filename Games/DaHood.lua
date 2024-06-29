@@ -88,6 +88,7 @@ task.spawn(function()
 
     local isPlayerLoadedBool = false
     local teleportLocations = {
+        ["UFO"] = Vector3.new(81, 139, -658),
         ["Uphill Gunz"] = Vector3.new(481, 48, -622),
         ["Uphill Food"] = Vector3.new(298, 49, -613),
         ["Downhill Gunz"] = Vector3.new(-580, 8, -735),
@@ -95,13 +96,15 @@ task.spawn(function()
         ["Bank"] = Vector3.new(-461, 39, -280),
         ["School"] = Vector3.new(-594, 22, 229),
         ["Jeff's Taco's"] = Vector3.new(585, 51, -480),
+        ["Jail / Prison"] = Vector3.new(-293, 22, -112),
         ["Military Base"] = Vector3.new(37, 25, -873),
-        ["Police Station"] = Vector3.new(-265, 22, -96),
+        ["Police Station"] = Vector3.new(-266, 22, -95),
         ["Hood Fitness"] = Vector3.new(-75, 23, -633),
         ["Phone Store"] = Vector3.new(-119, 22, -982),
         ["Da Boxing Club"] = Vector3.new(-253, 23, -1121),
         ["Da Theatre"] = Vector3.new(-1006, 25, -142),
         ["Da Casino"] = Vector3.new(-861, 22, -130),
+        ["Firestation"] = Vector3.new(-151, 54, -92),
         ["Nightclub"] = Vector3.new(-257, -6, -389),
         ["TreeHouse"] = Vector3.new(-74, 55, -257)
     }
