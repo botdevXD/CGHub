@@ -54,9 +54,7 @@ local function getDependencySource(depName)
     return fetchedSource and returnSource
 end
 
-for _, DependencyName in ipairs(Dependencies) do
-    if shared.CG_HUB_DEPENDENCIES[DependencyName] ~= nil then continue end
-
+for _, DependencyName in pairs(Dependencies) do
     local dependencySource = getDependencySource(DependencyName)
     local loadedDependency = safeLoadString(dependencySource)
 
