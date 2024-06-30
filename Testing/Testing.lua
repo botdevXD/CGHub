@@ -40,3 +40,72 @@ local function aimAt(Player)
         end
     end
 end
+
+local Players = game.Players
+local Player = Players.LocalPlayer
+
+local Character = Player.Character
+
+shared.antiLock = not shared.antiLock
+
+local function calculateHipHeight(character)
+    local joints = {
+        {
+            PartName = "HumanoidRootPart",
+            From	 = nil,
+            To		 = "RootRigAttachment"
+        },
+        {
+            PartName = "LowerTorso",
+            From	 = "RootRigAttachment",
+            To		 = "RightHipRigAttachment"
+        },
+        {
+            PartName = "RightUpperLeg",
+            From	 = "RightHipRigAttachment",
+            To		 = "RightKneeRigAttachment"
+        },
+        {
+            PartName = "RightLowerLeg",
+            From	 = "RightKneeRigAttachment",
+            To		 = "RightAnkleRigAttachment"
+        },
+        {
+            PartName = "RightFoot",
+            From	 = "RightAnkleRigAttachment",
+            To		 = nil
+        }	
+    }
+
+    local hipHeight = 0
+    
+    pcall(function()
+        for _, entry in pairs(joints) do
+            pcall(function()
+                local fromPos = entry.From and character[entry.PartName][entry.From].Position or Vector3.new(0, 0, 0)
+                local toPos	  = entry.To and character[entry.PartName][entry.To].Position or -character[entry.PartName].Size / 2  	
+    
+                hipHeight = hipHeight + fromPos.Y - toPos.Y
+            end)
+        end
+
+        hipHeight = hipHeight - character.PrimaryPart.Size.Y / 2
+    end)
+
+    return hipHeight	
+end
+
+while shared.antiLock do
+    local oldvelocity = Character.PrimaryPart.AssemblyLinearVelocity
+    Character.Humanoid.HipHeight = 270
+    Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(oldvelocity.X, -5000, oldvelocity.Z)
+    Character.PrimaryPart.AssemblyLinearVelocity = oldvelocity
+    Character.Humanoid.HipHeight = 270
+    Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(oldvelocity.X, -5000, oldvelocity.Z)
+    Character.Humanoid.HipHeight = 270
+
+    task.wait()
+end
+
+Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+Character.Humanoid.HipHeight = calculateHipHeight(Character)

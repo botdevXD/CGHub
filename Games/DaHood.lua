@@ -666,7 +666,7 @@ task.spawn(function()
 
             local Distance = (Vars.Character.HumanoidRootPart.Position - targetPosition).Magnitude
             local Time = Distance / PlayerPing
-            local PredictedPosition = targetPosition + targetPartVelocity * Time * (shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount / 6)
+            local PredictedPosition = targetPosition + targetPartVelocity * Time * ((shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount / 1000) * 20)
 
             return PredictedPosition
         end
@@ -703,7 +703,7 @@ task.spawn(function()
         return targetPosition
     end
 
-    local function antiLock()
+    local function antiLock_VERSION_1()
         if not isPlayerLoadedCheck() then return end
         if not Vars.Character then return end
     
@@ -722,6 +722,25 @@ task.spawn(function()
         Humanoid.HipHeight = 3.55
     end
     
+    local function antiLock_VERSION_2()
+        if not isPlayerLoadedCheck() then return end
+        if not Vars.Character then return end
+    
+        local humanoidRootPart = Vars.Character:FindFirstChild("HumanoidRootPart")
+        if not humanoidRootPart then return end
+    
+        local Humanoid = Vars.Character:FindFirstChildWhichIsA("Humanoid")
+        if not Humanoid then return end
+        
+        local oldRootVelocity = humanoidRootPart.AssemblyLinearVelocity
+        Humanoid.HipHeight = 270
+        humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, -5000, oldRootVelocity.Z)
+        humanoidRootPart.AssemblyLinearVelocity = oldRootVelocity
+        Humanoid.HipHeight = 270
+        humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, -5000, oldRootVelocity.Z)
+        Humanoid.HipHeight = 270
+    end
+
     local function antiFling()
         for _, Player in ipairs(Services.Players:GetPlayers()) do
             if Player == Vars.Player then continue end
@@ -1206,9 +1225,9 @@ task.spawn(function()
     })
 
     AimSectionLeft:Toggle({
-        Name = "Anti Lock",
+        Name = "Anti Lock V1",
         Default = shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockBool,
-        flag = "antiLock",
+        flag = "antiLockv1toggleflag",
         Callback = function(toggleBool)
             shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockBool = toggleBool
     
@@ -1218,7 +1237,34 @@ task.spawn(function()
     
             task.spawn(function()
                 while shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockBool do
-                    antiLock()
+                    antiLock_VERSION_1()
+                    task.wait()
+                end
+
+                if Vars.Character then
+                    local humanoidRootPart = Vars.Character:FindFirstChild("HumanoidRootPart")
+                    if not humanoidRootPart then return end
+                
+                    humanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                end
+            end)
+        end,
+    })
+
+    AimSectionLeft:Toggle({
+        Name = "Anti Lock V2",
+        Default = shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockBool,
+        flag = "antiLockv2toggleflag",
+        Callback = function(toggleBool)
+            shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockBool = toggleBool
+    
+            resetHipheight()
+    
+            if not toggleBool then return end
+    
+            task.spawn(function()
+                while shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockBool do
+                    antiLock_VERSION_2()
                     task.wait()
                 end
 
@@ -1257,7 +1303,7 @@ task.spawn(function()
                 PredictionAmountSlider = AimSectionRight:Slider({
                     Name = "Prediction Amount",
                     Minimum = 1,
-                    Maximum = 14,
+                    Maximum = 100,
                     Default = shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount,
                     flag = "aimpredictionamountflag",
                     Callback = function(Value)
@@ -1265,7 +1311,7 @@ task.spawn(function()
                     end,
                 })
             else
-                if PredictionAmountSlider then
+                if PredictionAmountSlider ~= nil then
                     PredictionAmountSlider:RemoveSlider()
                     PredictionAmountSlider = nil
                 end

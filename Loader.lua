@@ -67,6 +67,7 @@ local games = {
     [2788229376] = "DaHood", -- [[ Da Hood Original ]]
     [16033173781] = "DaHood", -- [[ Da Hood Macro ]]
     [7213786345] = "DaHood", -- [[ Da Hood Voice Chat ]]
+    [17897702920] = "DaHood", -- [[ OG Da Hood ]]
     --[17714122625] = "DaHood", -- [[ DaH Hood ]]
     --[2753915549] = "Bloxfruits",
 }
