@@ -186,6 +186,7 @@ task.spawn(function()
         aimlockTargetPart = targetParts[1],
         aimsmoothness = 1,
         stickyAimLockBool = false,
+        aim_prediction_mode = "Auto",
         aim_prediction_type = "Velocity",
 
         show_fov_bool = false,
@@ -1227,6 +1228,16 @@ task.spawn(function()
     })
 
     local AimSectionRight = AimTab:Section({Name = "Extra", Side = "Right"})
+
+    AimSectionRight:Dropdown({
+        Name = "Prediction Mode",
+        Options = {"Auto", "Manual"},
+        Default = shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_mode,
+        flag = "aimpredictionmodeflag",
+        Callback = function(Option)
+            shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_mode = Option
+        end,
+    })
 
     AimSectionRight:Dropdown({
         Name = "Prediction Type",

@@ -61,10 +61,12 @@ local tween6 = tweenService:Create(container.Elements, TweenInfo.new(.1, Enum.Ea
 tween6:Play()
 
 local games = {
-    [18128019573] = "DaHood",
-    [2788229376] = "DaHood",
-    [16033173781] = "DaHood",
-    [7213786345] = "DaHood"
+    [5602055394] = "DaHood", -- [[ Hood Modded ]]
+    [18128019573] = "DaHood", -- [[ Da Fights ]]
+    [17809101348] = "DaHood", -- [[ New Hood ]]
+    [2788229376] = "DaHood", -- [[ Da Hood Original ]]
+    [16033173781] = "DaHood", -- [[ Da Hood Macro ]]
+    [7213786345] = "DaHood" -- [[ Da Hood Voice Chat ]]
     --[2753915549] = "Bloxfruits",
 }
 
