@@ -713,15 +713,13 @@ task.spawn(function()
         local Humanoid = Vars.Character:FindFirstChildWhichIsA("Humanoid")
         if not Humanoid then return end
         
-        local randomVelocityY = math.random(70, 1000)
-    
         local oldRootVelocity = humanoidRootPart.AssemblyLinearVelocity
     
-        humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, -randomVelocityY, oldRootVelocity.Z)
+        humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, -100, oldRootVelocity.Z)
         humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, oldRootVelocity.Y, oldRootVelocity.Z)
-        humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, -randomVelocityY, oldRootVelocity.Z)
+        humanoidRootPart.AssemblyLinearVelocity = Vector3.new(oldRootVelocity.X, -100, oldRootVelocity.Z)
 
-        Humanoid.HipHeight = 3.5
+        Humanoid.HipHeight = 3.55
     end
     
     local function antiFling()
