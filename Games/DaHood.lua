@@ -178,6 +178,7 @@ task.spawn(function()
         AUTO_DROP_CASH_BOOL = false,
 
         -- AIM STUFF --
+        aim_prediction_amount = 14,
         AimViewBool = false,
         AimLockKnockedCheckBool = false,
         IsAttemptingToLock = false,
@@ -665,7 +666,7 @@ task.spawn(function()
 
             local Distance = (Vars.Character.HumanoidRootPart.Position - targetPosition).Magnitude
             local Time = Distance / PlayerPing
-            local PredictedPosition = foundTargetPart.Position + targetPartVelocity * Time * shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount
+            local PredictedPosition = targetPosition + targetPartVelocity * Time * (shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount / 6)
 
             return PredictedPosition
         end
