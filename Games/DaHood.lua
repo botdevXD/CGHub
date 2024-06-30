@@ -1229,6 +1229,8 @@ task.spawn(function()
 
     local AimSectionRight = AimTab:Section({Name = "Extra", Side = "Right"})
 
+    local PredictionAmountSlider = nil
+
     AimSectionRight:Dropdown({
         Name = "Prediction Mode",
         Options = {"Auto", "Manual"},
@@ -1236,6 +1238,24 @@ task.spawn(function()
         flag = "aimpredictionmodeflag",
         Callback = function(Option)
             shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_mode = Option
+
+            if Option == "Manual" then
+                PredictionAmountSlider = AimSectionRight:Slider({
+                    Name = "Prediction Amount",
+                    Minimum = 1,
+                    Maximum = 14,
+                    Default = shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount,
+                    flag = "aimpredictionamountflag",
+                    Callback = function(Value)
+                        shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount = Value
+                    end,
+                })
+            else
+                if PredictionAmountSlider then
+                    PredictionAmountSlider:RemoveSlider()
+                    PredictionAmountSlider = nil
+                end
+            end
         end,
     })
 
