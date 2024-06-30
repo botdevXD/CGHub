@@ -654,6 +654,21 @@ task.spawn(function()
     
         local targetPosition = foundTargetPart.Position
         if not targetPosition then return end
+
+        if shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_mode == "Manual" then
+            local targetPartVelocity = targetPlr.Character.PrimaryPart.AssemblyLinearVelocity
+
+            if shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockResolveBool then
+                local patchedTargetVelocity = Vector3.new(targetPartVelocity.X, math.clamp(targetPartVelocity.Y, -15, 15), targetPartVelocity.Z)
+                targetPartVelocity = patchedTargetVelocity
+            end
+
+            local Distance = (Vars.Character.HumanoidRootPart.Position - targetPosition).Magnitude
+            local Time = Distance / PlayerPing
+            local PredictedPosition = foundTargetPart.Position + targetPartVelocity * Time * shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_amount
+
+            return PredictedPosition
+        end
     
         if shared.CG_DA_HOOD_CONFIG_TABLE.aim_prediction_type == "Velocity" then
             local targetPartVelocity = targetPlr.Character.PrimaryPart.AssemblyLinearVelocity
