@@ -154,7 +154,6 @@ container.Elements.LoadButton.MouseButton1Click:Connect(function()
     shared.loader_load_screen:Destroy()
     shared.loader_load_screen = nil
 
-    getfenv(loadedGameScript).shared = shared
     safeLoad(loadedGameScript)
 end)
 shared.CG_HUB_LOADING = false
