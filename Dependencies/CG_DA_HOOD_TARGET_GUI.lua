@@ -331,8 +331,8 @@ makeToggle({
 			return NOCLIP_MODULE.setNoClipEnabled(false)
 		end
 
-		local distance = 10
-		local speed = 5
+		local distance = 20
+		local speed = 25
 		local offset = Vector3.new(0, distance, 0)
 
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.OrbitPlayer do
@@ -380,6 +380,9 @@ makeToggle({
 				local z = position.Z + math.cos(tick() * speed) * distance
 		
 				teleport_func_test(Vector3.new(x, (position.Y - targetRootPart.Size.Y) - (myRootPart.Size.Y * 3.85) , z))
+
+				myRootPart.CFrame = CFrame.new(myRootPart.Position, targetRootPart.Position)
+				Camera.CFrame = CFrame.new(Camera.CFrame.Position, targetRootPart.Position)
 			end)
 
 			task.wait()

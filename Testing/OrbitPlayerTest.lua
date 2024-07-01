@@ -2,6 +2,8 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local Player = Players.LocalPlayer
 
+local Camera = workspace.CurrentCamera
+
 local currentTeleportBodyPosition = nil
 
 local function teleport_func_test(teleportPos)
@@ -50,10 +52,13 @@ local function orbitPlayer(targetPlayer, distance, speed)
 
         teleport_func_test(Vector3.new(x, (position.Y - targetRootPart.Size.Y) - (rootPart.Size.Y * 3.85) , z))
 
+        rootPart.CFrame = CFrame.new(rootPart.Position, targetRootPart.Position)
+        Camera.CFrame = CFrame.new(Camera.CFrame.Position, targetRootPart.Position)
+
         RunService.RenderStepped:Wait()
     end
 
     clearTeleportBodyPos()
 end
 
-orbitPlayer(Players["DatBig0ilf"], 10, 5)
+orbitPlayer(Players["snipedbyfuego"], 10, 25)

@@ -21,6 +21,14 @@ local function addPartToCache(part)
     shared.CG_NOCLIP_MODULE_PART_CACHE[part] = {
         CanCollide = part.CanCollide
     }
+    
+    table.insert(shared.CG_NOCLIP_CONNECTIONS, part:GetPropertyChangedSignal("CanCollide"):Connect(function()
+        if shared.CG_noClipEnabled then
+            part.CanCollide = false
+        else
+            part.CanCollide = shared.CG_NOCLIP_MODULE_PART_CACHE[part].CanCollide
+        end
+    end))
 end
 
 for _, part in ipairs(workspace:GetDescendants()) do
