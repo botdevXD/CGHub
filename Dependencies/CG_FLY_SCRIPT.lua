@@ -222,6 +222,12 @@ return {
         isFlyEnabled = value
 
         NOCLIP_MODULE.setNoClipEnabled(value)
+
+        if not value then
+            for I, _ in pairs(flyValues) do
+                flyValues[I] = false
+            end
+        end
     end,
 
     IsFlying = function()
