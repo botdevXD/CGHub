@@ -73,19 +73,19 @@ local function unloadPlayerESP(foundClient)
 	local leavingClientESPArmorBar = shared.CG_ESP_cachedArmorBars[foundClient]
 	
 	pcall(function()
-		if leavingClientESPText then
+		if leavingClientESPText ~= nil then
 			leavingClientESPText.Remove()
 		end
 
-		if leavingClientESPBox then
+		if leavingClientESPBox ~= nil then
 			leavingClientESPBox.Remove()
 		end
 
-		if leavingClientESPHealthBar then
+		if leavingClientESPHealthBar ~= nil then
 			leavingClientESPHealthBar.Remove()
 		end
 
-		if leavingClientESPArmorBar then
+		if leavingClientESPArmorBar ~= nil then
 			leavingClientESPArmorBar.Remove()
 		end
 	end)
