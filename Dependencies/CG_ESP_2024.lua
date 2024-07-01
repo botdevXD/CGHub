@@ -44,24 +44,24 @@ shared.CG_ESP_CONFIG = {
 
 local esp_Module = {}
 
-function esp_Module.EnableAndDisableBoxes()
-	shared.CG_ESP_CONFIG.BoxesEnabled = not shared.CG_ESP_CONFIG.BoxesEnabled
+function esp_Module.EnableAndDisableBoxes(value)
+	shared.CG_ESP_CONFIG.BoxesEnabled = value
 end
 
-function esp_Module.EnableAndDisableNametags()
-	shared.CG_ESP_CONFIG.NametagsEnabled = not shared.CG_ESP_CONFIG.NametagsEnabled
+function esp_Module.EnableAndDisableNametags(value)
+	shared.CG_ESP_CONFIG.NametagsEnabled = value
 end
 
-function esp_Module.EnableAndDisableTracers()
-	shared.CG_ESP_CONFIG.TracersEnabled = not shared.CG_ESP_CONFIG.TracersEnabled
+function esp_Module.EnableAndDisableTracers(value)
+	shared.CG_ESP_CONFIG.TracersEnabled = value
 end
 
-function esp_Module.EnableAndDisableHealthBar()
-	shared.CG_ESP_CONFIG.HealthBarEnabled = not shared.CG_ESP_CONFIG.HealthBarEnabled
+function esp_Module.EnableAndDisableHealthBar(value)
+	shared.CG_ESP_CONFIG.HealthBarEnabled = value
 end
 
-function esp_Module.EnableAndDisableArmorBar()
-	shared.CG_ESP_CONFIG.ArmorBarEnabled = not shared.CG_ESP_CONFIG.ArmorBarEnabled
+function esp_Module.EnableAndDisableArmorBar(value)
+	shared.CG_ESP_CONFIG.ArmorBarEnabled = value
 end
 
 shared.CG_ESP_FUNCTION_TABLE = esp_Module

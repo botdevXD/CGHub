@@ -1405,7 +1405,7 @@ task.spawn(function()
         Default = false,
         flag = "espBoxes",
         Callback = function(toggleBool)
-            CG_ESP_LIB.EnableAndDisableBoxes()
+            CG_ESP_LIB.EnableAndDisableBoxes(toggleBool)
         end,
     })
     
@@ -1414,7 +1414,7 @@ task.spawn(function()
         Default = false,
         flag = "espNameTags",
         Callback = function(toggleBool)
-            CG_ESP_LIB.EnableAndDisableNametags()
+            CG_ESP_LIB.EnableAndDisableNametags(toggleBool)
         end,
     })
     
@@ -1423,7 +1423,7 @@ task.spawn(function()
         Default = false,
         flag = "espTracers",
         Callback = function(toggleBool)
-            CG_ESP_LIB.EnableAndDisableTracers()
+            CG_ESP_LIB.EnableAndDisableTracers(toggleBool)
         end,
     })
 
@@ -1432,7 +1432,7 @@ task.spawn(function()
         Default = false,
         flag = "espHealthBar",
         Callback = function(toggleBool)
-            CG_ESP_LIB.EnableAndDisableHealthBar()
+            CG_ESP_LIB.EnableAndDisableHealthBar(toggleBool)
         end,
     })
 
@@ -1441,7 +1441,7 @@ task.spawn(function()
         Default = false,
         flag = "espArmorBar",
         Callback = function(toggleBool)
-            CG_ESP_LIB.EnableAndDisableArmorBar()
+            CG_ESP_LIB.EnableAndDisableArmorBar(toggleBool)
         end,
     })
 
