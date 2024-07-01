@@ -25,6 +25,8 @@ task.spawn(function()
     
     local Camera = workspace.CurrentCamera
 
+    CG_FLY_LIB.EnableAndDisableFly(false)
+
     shared.CG_DA_HOOD_CONNECTIONS = shared.CG_DA_HOOD_CONNECTIONS or {}
 
     for _, signalConnection in ipairs(shared.CG_DA_HOOD_CONNECTIONS) do
@@ -777,8 +779,8 @@ task.spawn(function()
         Name = "Fly",
         Default = shared.CG_DA_HOOD_CONFIG_TABLE.fly_toggle,
         flag = "playerflyflag",
-        Callback = function()
-            CG_FLY_LIB.EnableAndDisableFly()
+        Callback = function(toggleBool)
+            CG_FLY_LIB.EnableAndDisableFly(toggleBool)
         end
     })
 

@@ -218,10 +218,10 @@ table.insert(shared.CG_FLY_CONNECTIONS, RunService.Heartbeat:Connect(function()
 end))
 
 return {
-    EnableAndDisableFly = function()
-        isFlyEnabled = not isFlyEnabled
+    EnableAndDisableFly = function(value)
+        isFlyEnabled = value
 
-        NOCLIP_MODULE.setNoClipEnabled(isFlyEnabled)
+        NOCLIP_MODULE.setNoClipEnabled(value)
     end,
 
     IsFlying = function()
