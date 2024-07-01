@@ -167,7 +167,8 @@ shared.CG_DA_HOOD_TAGET_TOGGLES = {
 	AutoBag = false,
 	AutoStomp = false,
 	AutoKill = false,
-	AutoFling = false
+	AutoFling = false,
+	OrbitPlayer = false
 }
 
 local function getPlayerFromInput()
@@ -321,6 +322,76 @@ makeToggle({
 })
 
 makeToggle({
+	Name = "Orbit",
+	Default = false,
+	Callback = function(toggleBool)
+		shared.CG_DA_HOOD_TAGET_TOGGLES.OrbitPlayer = toggleBool
+		
+		if not toggleBool then
+			return NOCLIP_MODULE.setNoClipEnabled(false)
+		end
+
+		local distance = 10
+		local speed = 5
+		local offset = Vector3.new(0, distance, 0)
+
+		while shared.CG_DA_HOOD_TAGET_TOGGLES.OrbitPlayer do
+
+			pcall(function()
+				if not Player.Character then
+					clearTeleportBodyPos()
+					return;
+				end;
+	
+				local foundTarget = getPlayerFromInput()
+				if not foundTarget then
+					NOCLIP_MODULE.setNoClipEnabled(false)
+					clearTeleportBodyPos()
+					return;
+				end;
+				if not foundTarget.Character then
+					NOCLIP_MODULE.setNoClipEnabled(false)
+					clearTeleportBodyPos()
+					return;
+				end;
+	
+				if not TeleportFunc or not IsDead or not IsKnocked or not getTool or not isAntiCheatBypassed() then return end
+
+				if not NOCLIP_MODULE.IsNoclipEnabled() then
+					NOCLIP_MODULE.setNoClipEnabled(true)
+				end
+
+				local myRootPart = Player.Character.PrimaryPart
+				if not myRootPart then
+					clearTeleportBodyPos()
+					NOCLIP_MODULE.setNoClipEnabled(false)
+					return;
+				end;
+
+				local targetRootPart = foundTarget.Character.PrimaryPart
+				if not targetRootPart then
+					clearTeleportBodyPos()
+					NOCLIP_MODULE.setNoClipEnabled(false)
+					return;
+				end;
+				
+				local position = targetRootPart.Position + offset
+				local x = position.X + math.sin(tick() * speed) * distance
+				local z = position.Z + math.cos(tick() * speed) * distance
+		
+				teleport_func_test(Vector3.new(x, (position.Y - targetRootPart.Size.Y) - (myRootPart.Size.Y * 3.85) , z))
+			end)
+
+			task.wait()
+		end
+
+		NOCLIP_MODULE.setNoClipEnabled(false)
+
+		clearTeleportBodyPos()
+	end
+})
+
+makeToggle({
 	Name = "Auto Kill",
 	Default = false,
 	Callback = function(toggleBool)
@@ -335,16 +406,19 @@ makeToggle({
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.AutoKill do
 			pcall(function()
 				if not Player.Character then
+					clearTeleportBodyPos()
 					return;
 				end;
 	
 				local foundTarget = getPlayerFromInput()
 				if not foundTarget then
 					NOCLIP_MODULE.setNoClipEnabled(false)
+					clearTeleportBodyPos()
 					return;
 				end;
 				if not foundTarget.Character then
 					NOCLIP_MODULE.setNoClipEnabled(false)
+					clearTeleportBodyPos()
 					return;
 				end;
 	
@@ -413,15 +487,20 @@ makeToggle({
 
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.AutoBag do
 			pcall(function()
-				if not Player.Character then return; end;
+				if not Player.Character then
+					clearTeleportBodyPos()
+					return;
+				end
 
 				local foundTarget = getPlayerFromInput()
 				if not foundTarget then
 					NOCLIP_MODULE.setNoClipEnabled(false)
+					clearTeleportBodyPos()
 					return;
 				end;
 				if not foundTarget.Character then
 					NOCLIP_MODULE.setNoClipEnabled(false)
+					clearTeleportBodyPos()
 					return;
 				end;
 				if not TeleportFunc or not IsDead or not IsKnocked or not getTool or not isAntiCheatBypassed() then return end

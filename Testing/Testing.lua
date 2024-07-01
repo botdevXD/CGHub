@@ -96,13 +96,16 @@ local function calculateHipHeight(character)
 end
 
 while shared.antiLock do
+    Character = Player.Character
+
     local oldvelocity = Character.PrimaryPart.AssemblyLinearVelocity
-    Character.Humanoid.HipHeight = 270
-    Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(oldvelocity.X, -5000, oldvelocity.Z)
+    Character.Humanoid.HipHeight = 0
+
+    Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(oldvelocity.X + math.random(100, 1000), -17000, oldvelocity.Z + math.random(100, 1000))
     Character.PrimaryPart.AssemblyLinearVelocity = oldvelocity
-    Character.Humanoid.HipHeight = 270
-    Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(oldvelocity.X, -5000, oldvelocity.Z)
-    Character.Humanoid.HipHeight = 270
+    Character.Humanoid.HipHeight = 5
+    Character.PrimaryPart.AssemblyLinearVelocity = Vector3.new(oldvelocity.X - math.random(100, 1000), -50000, oldvelocity.Z - math.random(100, 1000))
+    Character.Humanoid.HipHeight = 30
 
     task.wait()
 end
