@@ -165,6 +165,7 @@ task.spawn(function()
 
         AutoBlockPunchesBool = false,
         AutoPickupMoneyBool = false,
+        AutoArrestBool = false,
         AutoStompBool = false,
         AutoLettuceBool = false,
         auto_mask_toggle = false,
@@ -681,7 +682,7 @@ task.spawn(function()
                 targetPartVelocity = patchedTargetVelocity
             end
 
-            local TargetDistance = (targetPosition - Camera.CFrame.Position).Magnitude
+            local TargetDistance = (Vars.Character.HumanoidRootPart.Position - targetPosition).Magnitude
         
             local localPlayerVelocity = Vars.Character.PrimaryPart.AssemblyLinearVelocity
         
@@ -1496,6 +1497,19 @@ task.spawn(function()
                         task.wait()
                     end
                 end)
+            end,
+        }) )
+
+        table.insert( autoFarmToggles, AutoFarmSection:Toggle({
+            Name = "Auto Arrest",
+            Default = shared.CG_DA_HOOD_CONFIG_TABLE.AutoArrestBool,
+            flag = "autoarresttoggleflag",
+            Callback = function(toggleBool)
+                shared.CG_DA_HOOD_CONFIG_TABLE.AutoArrestBool = toggleBool
+
+                if not toggleBool then return end
+
+                disableOtherToggles(autoFarmToggles, "Auto Arrest")
             end,
         }) )
 
