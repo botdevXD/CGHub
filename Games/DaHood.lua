@@ -1202,24 +1202,26 @@ task.spawn(function()
             task.spawn(function()
                 while shared.CG_DA_HOOD_CONFIG_TABLE.AimLockBool do
 
-                    if shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock then
-                        currentAimLockTarget = currentAimLockTarget ~= nil and shared.CG_DA_HOOD_CONFIG_TABLE.stickyAimLockBool and currentAimLockTarget or getPlayerClosestToFOV_RADIUS(shared.CG_DA_HOOD_CONFIG_TABLE.AimLockKnockedCheckBool)
-
-                        if currentAimLockTarget then
-
-                            local targetPredictedPosition = DA_HOOD_PREDICTION(currentAimLockTarget, shared.CG_DA_HOOD_CONFIG_TABLE.aimlockTargetPart)
-
-                            if typeof(targetPredictedPosition) == "Vector3" then
-                                if shared.CG_DA_HOOD_CONFIG_TABLE.aimsmoothness > 1 then
-                                    Services.TweenService:Create(Camera, TweenInfo.new(shared.CG_DA_HOOD_CONFIG_TABLE.aimsmoothness / 100, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
-                                        CFrame = CFrame.new(Camera.CFrame.Position, targetPredictedPosition)
-                                    }):Play()
-                                else
-                                    Camera.CFrame = CFrame.new(Camera.CFrame.Position, targetPredictedPosition)
+                    pcall(function()
+                        if shared.CG_DA_HOOD_CONFIG_TABLE.IsAttemptingToLock then
+                            currentAimLockTarget = currentAimLockTarget ~= nil and shared.CG_DA_HOOD_CONFIG_TABLE.stickyAimLockBool and currentAimLockTarget or getPlayerClosestToFOV_RADIUS(shared.CG_DA_HOOD_CONFIG_TABLE.AimLockKnockedCheckBool)
+    
+                            if currentAimLockTarget then
+    
+                                local targetPredictedPosition = DA_HOOD_PREDICTION(currentAimLockTarget, shared.CG_DA_HOOD_CONFIG_TABLE.aimlockTargetPart)
+    
+                                if typeof(targetPredictedPosition) == "Vector3" then
+                                    if shared.CG_DA_HOOD_CONFIG_TABLE.aimsmoothness > 1 then
+                                        Services.TweenService:Create(Camera, TweenInfo.new(shared.CG_DA_HOOD_CONFIG_TABLE.aimsmoothness / 100, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+                                            CFrame = CFrame.new(Camera.CFrame.Position, targetPredictedPosition)
+                                        }):Play()
+                                    else
+                                        Camera.CFrame = CFrame.new(Camera.CFrame.Position, targetPredictedPosition)
+                                    end
                                 end
                             end
                         end
-                    end
+                    end)
 
                     task.wait()
                 end
