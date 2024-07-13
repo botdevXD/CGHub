@@ -71,6 +71,7 @@ local games = {
     [9825515356] = "DaHood", -- [[ Hood Customs ]]
     [18111448661] = "DaHood", -- [[ Da Uphill ]]
     [17326592548] = "DaHood", -- [[ Dah Hood ]]
+    [17403265390] = "DaHood", -- [[ Da Downhill ]]
     --[17714122625] = "DaHood", -- [[ DaH Hood ]]
     --[2753915549] = "Bloxfruits",
 }
