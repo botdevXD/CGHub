@@ -24,6 +24,9 @@ task.spawn(function()
     local Camera = workspace.CurrentCamera
 
     CG_FLY_LIB.EnableAndDisableFly(false)
+    CG_FLY_LIB.SetAntiCheatBypassedFunction(function()
+        return true
+    end)
 
     shared.CG_UNIVERSAL_CONNECTIONS = shared.CG_UNIVERSAL_CONNECTIONS or {}
 
@@ -75,9 +78,11 @@ task.spawn(function()
 
     Vars.Character = Vars.Player.Character or Vars.Player.CharacterAdded:Wait()
     
+    local PlayerTab = window:Page({Name = "Player"})
     local AimTab = window:Page({Name = "Aim"})
     local VisualsTab = window:Page({Name = "Visuals"})
 
+    local PlayerSectionLeft = PlayerTab:Section({Name = "Main", Side = "Left"})
     local AimSectionLeft = AimTab:Section({Name = "Main", Side = "Left"})
     local VisualsSectionLeft = VisualsTab:Section({Name = "Main", Side = "Left"})
 
@@ -232,6 +237,15 @@ task.spawn(function()
         VisualfovCircle.Radius = shared.CG_UNIVERSAL_CONFIG_TABLE.FOV_RADIUS
         VisualfovCircle.Position = Vector2.new(mosuePosX, mosuePosY)
     end)
+
+    PlayerSectionLeft:Toggle({
+        Name = "Fly",
+        Default = false,
+        flag = "flyflag",
+        Callback = function(toggleBool)
+            CG_FLY_LIB.EnableAndDisableFly(toggleBool)
+        end,
+    })
 
     AimSectionLeft:Toggle({
         Name = "Aim Lock",
