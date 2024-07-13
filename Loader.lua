@@ -61,26 +61,26 @@ local tween6 = tweenService:Create(container.Elements, TweenInfo.new(.1, Enum.Ea
 tween6:Play()
 
 local games = {
-    [5602055394] = "DaHood", -- [[ Hood Modded ]]
-    [18128019573] = "DaHood", -- [[ Da Fights ]]
-    [17809101348] = "DaHood", -- [[ New Hood ]]
-    [2788229376] = "DaHood", -- [[ Da Hood Original ]]
-    [16033173781] = "DaHood", -- [[ Da Hood Macro ]]
-    [7213786345] = "DaHood", -- [[ Da Hood Voice Chat ]]
-    [17897702920] = "DaHood", -- [[ OG Da Hood ]]
-    [9825515356] = "DaHood", -- [[ Hood Customs ]]
-    [18111448661] = "DaHood", -- [[ Da Uphill ]]
-    [17326592548] = "DaHood", -- [[ Dah Hood ]]
-    [17403265390] = "DaHood", -- [[ Da Downhill ]]
-    [14566134687] = "DaHood", -- [[ Da-Customs ]]
-    [18111451594] = "DaHood", -- [[ Da Bank ]]
-    [16435867341] = "DaHood", -- [[ Mad Hood ]]
-    --[17714122625] = "DaHood", -- [[ DaH Hood ]]
+    [5602055394] = "Da Hood", -- [[ Hood Modded ]]
+    [18128019573] = "Da Hood", -- [[ Da Fights ]]
+    [17809101348] = "Da Hood", -- [[ New Hood ]]
+    [2788229376] = "Da Hood", -- [[ Da Hood Original ]]
+    [16033173781] = "Da Hood", -- [[ Da Hood Macro ]]
+    [7213786345] = "Da Hood", -- [[ Da Hood Voice Chat ]]
+    [17897702920] = "Da Hood", -- [[ OG Da Hood ]]
+    [9825515356] = "Da Hood", -- [[ Hood Customs ]]
+    [18111448661] = "Da Hood", -- [[ Da Uphill ]]
+    [17326592548] = "Da Hood", -- [[ Dah Hood ]]
+    [17403265390] = "Da Hood", -- [[ Da Downhill ]]
+    [14566134687] = "Da Hood", -- [[ Da-Customs ]]
+    [18111451594] = "Da Hood", -- [[ Da Bank ]]
+    [16435867341] = "Da Hood", -- [[ Mad Hood ]]
+    --[17714122625] = "Da Hood", -- [[ DaH Hood ]]
     --[2753915549] = "Bloxfruits",
 }
 
 if not games[game.PlaceId] then
-    games[game.PlaceId] = "UniversalScript"
+    games[game.PlaceId] = "Universal"
 end
 
 local Dependencies = {
@@ -113,7 +113,7 @@ end
 
 local function getScriptSource(gameId)
     local fetchedSource, returnSource = pcall(function()
-        local gameSourceUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName, games[gameId] .. ".lua")
+        local gameSourceUrl = Data.GamesFolder:format(Data.GithubRepOwner, Data.GithubRepName, tostring(games[gameId]):gsub(" ", "") .. ".lua")
 
         return game:HttpGet(gameSourceUrl, true)
     end)
@@ -150,6 +150,8 @@ for DependencyIndex, DependencyName in pairs(Dependencies) do
 
     warn("Failed to load dependency: " .. DependencyName)
 end
+
+container.Elements.LoadButton.Text = "Load " .. games[currentPlaceId] .. " Script"
 
 container.Elements.LoadButton.MouseButton1Click:Connect(function()
     local currentGameSource = getScriptSource(currentPlaceId)
