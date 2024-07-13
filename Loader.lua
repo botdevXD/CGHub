@@ -131,6 +131,8 @@ local function getDependencySource(depName)
     return fetchedSource and returnSource
 end
 
+container.Elements.LoadButton.Text = "Loading Dependencies..."
+
 for DependencyIndex, DependencyName in pairs(Dependencies) do
     if shared.CG_HUB_DEPENDENCIES[DependencyIndex] ~= nil then continue end
 
@@ -151,7 +153,7 @@ for DependencyIndex, DependencyName in pairs(Dependencies) do
     warn("Failed to load dependency: " .. DependencyName)
 end
 
-container.Elements.LoadButton.Text = "Load " .. games[currentPlaceId] .. " Script"
+container.Elements.LoadButton.Text = "Press to load " .. games[currentPlaceId] .. " Script"
 
 container.Elements.LoadButton.MouseButton1Click:Connect(function()
     local currentGameSource = getScriptSource(currentPlaceId)
