@@ -72,9 +72,14 @@ local games = {
     [18111448661] = "DaHood", -- [[ Da Uphill ]]
     [17326592548] = "DaHood", -- [[ Dah Hood ]]
     [17403265390] = "DaHood", -- [[ Da Downhill ]]
+    [14566134687] = "DaHood", -- [[ Da-Customs ]]
     --[17714122625] = "DaHood", -- [[ DaH Hood ]]
     --[2753915549] = "Bloxfruits",
 }
+
+if not games[game.PlaceId] then
+    games[game.PlaceId] = "UniversalScript"
+end
 
 local Dependencies = {
     CG_AIM_VIEW_LIB = "DH_AIM_VIEWER",
