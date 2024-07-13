@@ -644,6 +644,16 @@ task.spawn(function()
         return closestPlayer
     end
 
+    local function patchVelocity(targetPartVelocity)
+        local patchedTargetVelocity = Vector3.new(
+            math.clamp(targetPartVelocity.X, -10, 10),
+            math.clamp(targetPartVelocity.Y, -15, 15),
+            math.clamp(targetPartVelocity.Z, -10, 10)
+        )
+
+        return patchedTargetVelocity
+    end
+
     local function DA_HOOD_PREDICTION(targetPlr, targetPart)
         local gameClientStats = stats()
         local gameClientNetwork = gameClientStats.Network
@@ -663,8 +673,7 @@ task.spawn(function()
             local targetPartVelocity = targetPlr.Character.PrimaryPart.AssemblyLinearVelocity
 
             if shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockResolveBool then
-                local patchedTargetVelocity = Vector3.new(targetPartVelocity.X, math.clamp(targetPartVelocity.Y, -15, 15), targetPartVelocity.Z)
-                targetPartVelocity = patchedTargetVelocity
+                targetPartVelocity = patchVelocity(targetPartVelocity)
             end
 
             local Distance = (Vars.Character.HumanoidRootPart.Position - targetPosition).Magnitude
@@ -678,8 +687,7 @@ task.spawn(function()
             local targetPartVelocity = targetPlr.Character.PrimaryPart.AssemblyLinearVelocity
 
             if shared.CG_DA_HOOD_CONFIG_TABLE.AntiLockResolveBool then
-                local patchedTargetVelocity = Vector3.new(targetPartVelocity.X, math.clamp(targetPartVelocity.Y, -15, 15), targetPartVelocity.Z)
-                targetPartVelocity = patchedTargetVelocity
+                targetPartVelocity = patchVelocity(targetPartVelocity)
             end
 
             local TargetDistance = (Vars.Character.HumanoidRootPart.Position - targetPosition).Magnitude
