@@ -215,6 +215,8 @@ table.insert(shared.CG_FLY_CONNECTIONS, RunService.Heartbeat:Connect(function()
     playerBodyPosition.Position = playerBodyPosition.Position + direction * flySpeed
 
     --Player.Character.PrimaryPart.CFrame = CFrame.new(Player.Character.PrimaryPart.Position, playerBodyPosition.Position)
+
+    Camera.CameraType = Enum.CameraType.Custom
 end))
 
 return {
