@@ -922,6 +922,8 @@ task.spawn(function()
                 local bodyVelocity = Instance.new("BodyVelocity")
 
                 while shared.CG_DA_HOOD_CONFIG_TABLE.SpeedMacroToggle do
+                    Camera.CameraType = Enum.CameraType.Custom
+
                     if CG_FLY_LIB.IsFlying() then
                         if bodyVelocity then
                             pcall(bodyVelocity.Destroy, bodyVelocity)
