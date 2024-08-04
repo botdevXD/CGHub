@@ -336,6 +336,7 @@ makeToggle({
 		local offset = Vector3.new(0, distance, 0)
 
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.OrbitPlayer do
+			Camera.CameraType = Enum.CameraType.Custom
 
 			pcall(function()
 				if not Player.Character then
@@ -407,6 +408,7 @@ makeToggle({
 		NOCLIP_MODULE.setNoClipEnabled(true)
 
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.AutoKill do
+			Camera.CameraType = Enum.CameraType.Custom
 			pcall(function()
 				if not Player.Character then
 					clearTeleportBodyPos()
@@ -489,6 +491,7 @@ makeToggle({
 		local OLD_POS = nil
 
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.AutoBag do
+			Camera.CameraType = Enum.CameraType.Custom
 			pcall(function()
 				if not Player.Character then
 					clearTeleportBodyPos()
@@ -569,6 +572,8 @@ makeToggle({
 		local OLDPOS = nil
 		
 		while shared.CG_DA_HOOD_TAGET_TOGGLES.AutoFling do
+			Camera.CameraType = Enum.CameraType.Custom
+			
 			if not isAntiCheatBypassed() or not TeleportFunc then task.wait(); continue; end;
 			
 			if not Player.Character then task.wait(); continue; end;
