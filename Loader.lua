@@ -12,7 +12,7 @@ if shared.loader_load_screen ~= nil then
 end
 
 shared.loader_load_screen = game:GetObjects("rbxassetid://18261449357")[1]
-shared.loader_load_screen.Parent = game:GetService("CoreGui")
+shared.loader_load_screen.Parent = cloneref(game:GetService("CoreGui"))
 
 local container = shared.loader_load_screen.Container
 
