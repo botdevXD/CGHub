@@ -15,8 +15,7 @@ local GUIService = game:GetService("GuiService")
 local Players = game:GetService("Players")
 local runService = game:GetService("RunService")
 
-local DrawingNew = shared.ESP_DRAWING_LIB or loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/DrawingLib.lua", true))()
-shared.ESP_DRAWING_LIB = shared.ESP_DRAWING_LIB or DrawingNew
+local DrawingNew = Drawing
 
 local Camera = workspace.CurrentCamera
 local Player = Players.LocalPlayer
