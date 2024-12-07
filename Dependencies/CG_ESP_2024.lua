@@ -103,7 +103,7 @@ local function updatePlayerESP(espPlayer)
 	local text = shared.CG_ESP_cachedText[espPlayer] or DrawingNew.new("Text")
 	text.Size = 20
 	text.Text = espPlayer.Name
-	text.Color = Color3.fromRGB(255, 255, 255)
+	text.colour = Color3.fromRGB(255, 255, 255)
 	text.Outline = true
 
 	shared.CG_ESP_cachedText[espPlayer] = shared.CG_ESP_cachedText[espPlayer] or text
@@ -139,7 +139,7 @@ local function updatePlayerESP(espPlayer)
     box.Outline = true
     box.Thickness = .7
     box.OutlineColor = Color3.fromRGB(255, 255, 255)
-	box.Color = Color3.fromRGB(255, 255, 255)
+	box.colour = Color3.fromRGB(255, 255, 255)
 	box.Visible = IsVisible and shared.CG_ESP_CONFIG.BoxesEnabled or false
 	box.Size = Vector2.new((rootPart.Size.X * 1350) / screenPoint.Z, (rootPart.Size.Y * boxHeightScale) / screenPoint.Z);
 	box.Position = Vector2.new(screenPoint.X - box.Size.X / 2, (screenPoint.Y + Inset.Y - box.Size.Y / 2));
@@ -167,7 +167,7 @@ local function updatePlayerESP(espPlayer)
 		ArmorBar.OutlineColor = Color3.fromRGB(0, 0, 0)
 		ArmorBar.Visible = IsVisible and shared.CG_ESP_CONFIG.ArmorBarEnabled or false
 		ArmorBar.Filled = true
-		ArmorBar.Color = Color3.fromRGB(0, 140, 255)
+		ArmorBar.colour = Color3.fromRGB(0, 140, 255)
 		ArmorBar.Size = Vector2.new((ArmorInstance.Value / maxArmor) * (box.Size.X), 2)
 
 		ArmorBar.Position = Vector2.new(box.Position.X, (screenPoint.Y + Inset.Y + box.Size.Y / 2) + ((ArmorBar.Size.Y * 1.6)))
