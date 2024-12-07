@@ -138,7 +138,7 @@ local function updatePlayerESP(espPlayer)
 
     box.Outline = true
     box.Thickness = .7
-    box.OutlineColor = Color3.fromRGB(255, 255, 255)
+    box.OutlineColour = Color3.fromRGB(255, 255, 255)
 	box.colour = Color3.fromRGB(255, 255, 255)
 	box.Visible = IsVisible and shared.CG_ESP_CONFIG.BoxesEnabled or false
 	box.Size = Vector2.new((rootPart.Size.X * 1350) / screenPoint.Z, (rootPart.Size.Y * boxHeightScale) / screenPoint.Z);
@@ -149,10 +149,10 @@ local function updatePlayerESP(espPlayer)
 
     HealthBar.Outline = true
     HealthBar.Thickness = 1
-    HealthBar.OutlineColor = Color3.fromRGB(0, 0, 0)
+    HealthBar.OutlineColour = Color3.fromRGB(0, 0, 0)
 	HealthBar.Visible = IsVisible and shared.CG_ESP_CONFIG.HealthBarEnabled or false
 	HealthBar.Filled = true
-	HealthBar.Color = Color3.fromRGB(0, 214, 0)
+	HealthBar.Colour = Color3.fromRGB(0, 214, 0)
 	HealthBar.Size = Vector2.new(2, ((totalHealth / maxHealth) * ((rootPart.Size.Y * boxHeightScale) / screenPoint.Z)))
 
 	HealthBar.Position = Vector2.new((box.Position.X + (box.Size.X - box.Size.X)) - (HealthBar.Size.X * 2.5), box.Position.Y)
@@ -164,7 +164,7 @@ local function updatePlayerESP(espPlayer)
 	if ArmorInstance then
 		ArmorBar.Outline = ArmorInstance.Value > 0 and true or false
 		ArmorBar.Thickness = 1
-		ArmorBar.OutlineColor = Color3.fromRGB(0, 0, 0)
+		ArmorBar.OutlineColour = Color3.fromRGB(0, 0, 0)
 		ArmorBar.Visible = IsVisible and shared.CG_ESP_CONFIG.ArmorBarEnabled or false
 		ArmorBar.Filled = true
 		ArmorBar.colour = Color3.fromRGB(0, 140, 255)
