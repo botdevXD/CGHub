@@ -103,7 +103,7 @@ local function updatePlayerESP(espPlayer)
 	local text = shared.CG_ESP_cachedText[espPlayer] or DrawingNew.new("Text")
 	text.Size = 20
 	text.Text = espPlayer.Name
-	text.colour = Color3.fromRGB(255, 255, 255)
+	text.color = Color3.fromRGB(255, 255, 255)
 	text.Outline = true
 
 	shared.CG_ESP_cachedText[espPlayer] = shared.CG_ESP_cachedText[espPlayer] or text
@@ -138,8 +138,8 @@ local function updatePlayerESP(espPlayer)
 
     box.Outline = true
     box.Thickness = .7
-    box.OutlineColour = Color3.fromRGB(255, 255, 255)
-	box.colour = Color3.fromRGB(255, 255, 255)
+    box.Outlinecolor = Color3.fromRGB(255, 255, 255)
+	box.color = Color3.fromRGB(255, 255, 255)
 	box.Visible = IsVisible and shared.CG_ESP_CONFIG.BoxesEnabled or false
 	box.Size = Vector2.new((rootPart.Size.X * 1350) / screenPoint.Z, (rootPart.Size.Y * boxHeightScale) / screenPoint.Z);
 	box.Position = Vector2.new(screenPoint.X - box.Size.X / 2, (screenPoint.Y + Inset.Y - box.Size.Y / 2));
@@ -149,10 +149,10 @@ local function updatePlayerESP(espPlayer)
 
     HealthBar.Outline = true
     HealthBar.Thickness = 1
-    HealthBar.OutlineColour = Color3.fromRGB(0, 0, 0)
+    HealthBar.Outlinecolor = Color3.fromRGB(0, 0, 0)
 	HealthBar.Visible = IsVisible and shared.CG_ESP_CONFIG.HealthBarEnabled or false
 	HealthBar.Filled = true
-	HealthBar.Colour = Color3.fromRGB(0, 214, 0)
+	HealthBar.color = Color3.fromRGB(0, 214, 0)
 	HealthBar.Size = Vector2.new(2, ((totalHealth / maxHealth) * ((rootPart.Size.Y * boxHeightScale) / screenPoint.Z)))
 
 	HealthBar.Position = Vector2.new((box.Position.X + (box.Size.X - box.Size.X)) - (HealthBar.Size.X * 2.5), box.Position.Y)
@@ -164,10 +164,10 @@ local function updatePlayerESP(espPlayer)
 	if ArmorInstance then
 		ArmorBar.Outline = ArmorInstance.Value > 0 and true or false
 		ArmorBar.Thickness = 1
-		ArmorBar.OutlineColour = Color3.fromRGB(0, 0, 0)
+		ArmorBar.Outlinecolor = Color3.fromRGB(0, 0, 0)
 		ArmorBar.Visible = IsVisible and shared.CG_ESP_CONFIG.ArmorBarEnabled or false
 		ArmorBar.Filled = true
-		ArmorBar.colour = Color3.fromRGB(0, 140, 255)
+		ArmorBar.color = Color3.fromRGB(0, 140, 255)
 		ArmorBar.Size = Vector2.new((ArmorInstance.Value / maxArmor) * (box.Size.X), 2)
 
 		ArmorBar.Position = Vector2.new(box.Position.X, (screenPoint.Y + Inset.Y + box.Size.Y / 2) + ((ArmorBar.Size.Y * 1.6)))
