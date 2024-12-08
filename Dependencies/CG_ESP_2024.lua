@@ -73,19 +73,19 @@ local function unloadPlayerESP(foundClient)
 	
 	pcall(function()
 		if leavingClientESPText ~= nil then
-			leavingClientESPText.Remove()
+			leavingClientESPText:Destroy()
 		end
 
 		if leavingClientESPBox ~= nil then
-			leavingClientESPBox.Remove()
+			leavingClientESPBox:Destroy()
 		end
 
 		if leavingClientESPHealthBar ~= nil then
-			leavingClientESPHealthBar.Remove()
+			leavingClientESPHealthBar:Destroy()
 		end
 
 		if leavingClientESPArmorBar ~= nil then
-			leavingClientESPArmorBar.Remove()
+			leavingClientESPArmorBar:Destroy()
 		end
 	end)
 
