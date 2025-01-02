@@ -31,7 +31,7 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 local playerBodyPosition = nil
 
 local isFlyEnabled = false
-local flySpeed = 1.1
+local flySpeed = 0.2
 local flyValues = {
     Forward = false,
     Backward = false,
