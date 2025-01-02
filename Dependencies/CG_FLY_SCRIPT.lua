@@ -239,7 +239,7 @@ return {
     SetFlySpeed = function(value)
         if type(value) ~= "number" then return end
 
-        value = math.clamp(value, 1, 100)
+        value = math.clamp(value, 0, 100)
 
         flySpeed = value
     end,
