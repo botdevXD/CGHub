@@ -1813,7 +1813,7 @@ task.spawn(function()
     MiscSectionRight:Slider({
         Name = "Drop Amount",
         Minimum = 100,
-        Maximum = 15075,
+        Maximum = 15076,
         Default = shared.CG_DA_HOOD_CONFIG_TABLE.AUTO_DROP_CASH_AMOUNT,
         flag = "moneydropamountflag",
         Callback = function(Value)
