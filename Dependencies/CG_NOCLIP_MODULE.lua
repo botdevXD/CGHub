@@ -1,5 +1,5 @@
 local noclipModule = {}
---[[
+
 local runService = game:GetService("RunService")
 
 shared.CG_NOCLIP_CONNECTIONS = shared.CG_NOCLIP_CONNECTIONS or {}
@@ -52,11 +52,11 @@ table.insert(shared.CG_NOCLIP_CONNECTIONS, workspace.DescendantRemoving:Connect(
 
     shared.CG_NOCLIP_MODULE_PART_CACHE[removedObject] = nil
 end))
-]]
+
 function noclipModule.setNoClipEnabled(value)
     shared.CG_noClipEnabled = value
 
-    --[[for part, data in pairs(shared.CG_NOCLIP_MODULE_PART_CACHE) do
+    for part, data in pairs(shared.CG_NOCLIP_MODULE_PART_CACHE) do
         if value then
             part.CanCollide = false
             
@@ -64,11 +64,11 @@ function noclipModule.setNoClipEnabled(value)
         end
 
         part.CanCollide = data.CanCollide
-    end]]
+    end
 end
 
 function noclipModule.IsNoclipEnabled()
-    return false --shared.CG_noClipEnabled
+    return shared.CG_noClipEnabled
 end
 
 return noclipModule
