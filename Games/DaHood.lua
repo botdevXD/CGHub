@@ -1831,7 +1831,7 @@ task.spawn(function()
 
             task.spawn(function()
                 while shared.CG_DA_HOOD_CONFIG_TABLE.AUTO_DROP_CASH_BOOL do
-                    MainEvent:FireServer("DropMoney", tostring( math.clamp( shared.CG_DA_HOOD_CONFIG_TABLE.AUTO_DROP_CASH_AMOUNT, 0, 10000) ))
+                    MainEvent:FireServer("DropMoney", tostring( math.clamp( shared.CG_DA_HOOD_CONFIG_TABLE.AUTO_DROP_CASH_AMOUNT, 0, 15000) ))
                     task.wait()
                 end
             end)
