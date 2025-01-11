@@ -103,30 +103,15 @@ local function getShopFolder()
 	return ignoredFolder:FindFirstChild("Shop")
 end
 
-local currentTeleportBodyPosition = nil
-
 local function teleport_func_test(teleportPos) -- I'm trying this method - CG
 	if not Player.Character then return end
 	if typeof(teleportPos) ~= "Vector3" then return end
 	if not isAntiCheatBypassed() then return end
 
-	if not currentTeleportBodyPosition or not currentTeleportBodyPosition:IsDescendantOf(workspace) then
-		currentTeleportBodyPosition = nil
-	end
-
-	local bodyPosition = currentTeleportBodyPosition or Instance.new("BodyPosition")
-	bodyPosition.MaxForce = Vector3.new(9e9, 9e9, 9e9)
-	bodyPosition.D = 300
-	bodyPosition.Position = teleportPos
-	bodyPosition.Parent = Player.Character.PrimaryPart
-
-	currentTeleportBodyPosition = bodyPosition
+    Player.Character.PrimaryPart.CFrame = CFrame.new(teleportPos)
 end
 
 local function clearTeleportBodyPos()
-	if currentTeleportBodyPosition then
-		pcall(currentTeleportBodyPosition.Destroy, currentTeleportBodyPosition)
-	end
 end
 
 -- I've done this in a seperate loadstring because I don't want to bloat the main script and make it hard for me to read and work on.
