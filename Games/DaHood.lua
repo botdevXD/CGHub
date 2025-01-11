@@ -45,7 +45,7 @@ task.spawn(function()
             shared.CG_CURRENT_WINDOW:Unload()
             shared.CG_CURRENT_WINDOW = nil
 
-            for _, Object in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+            for _, Object in ipairs(cloneref(game:GetService("CoreGui")):GetDescendants()) do
                 if Object:IsA("ScreenGui") and Object.Name == "Drawing" then
                     for _, Object2 in ipairs(Object:GetDescendants()) do
                         Object2:Destroy()
@@ -127,14 +127,14 @@ task.spawn(function()
     }
     
     local Services = {
-        Players = game:GetService("Players"),
-        ReplicatedStorage = game:GetService("ReplicatedStorage"),
-        VirtualInputManager = game:GetService("VirtualInputManager"),
-        HttpService = game:GetService("HttpService"),
-        UserInputService = game:GetService("UserInputService"),
-        RunService = game:GetService("RunService"),
-        TweenService = game:GetService("TweenService"),
-        TeleportService = game:GetService("TeleportService")
+        Players = cloneref(game:GetService("Players")),
+        ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage")),
+        VirtualInputManager = cloneref(game:GetService("VirtualInputManager")),
+        HttpService = cloneref(game:GetService("HttpService")),
+        UserInputService = cloneref(game:GetService("UserInputService")),
+        RunService = cloneref(game:GetService("RunService")),
+        TweenService = cloneref(game:GetService("TweenService")),
+        TeleportService = cloneref(game:GetService("TeleportService"))
     }
 
     local MainEvent = Services.ReplicatedStorage:FindFirstChild("MainEvent")
