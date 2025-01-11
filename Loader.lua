@@ -1,4 +1,4 @@
-local tweenService = game:GetService("TweenService")
+local tweenService = cloneref(game:GetService("TweenService"))
 shared.CG_HUB_LOADING = shared.CG_HUB_LOADING or false
 shared.CG_HUB_DEPENDENCIES = shared.CG_HUB_DEPENDENCIES or {}
 
