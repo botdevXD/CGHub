@@ -16,7 +16,11 @@ shared.current_CG_DA_HOOD_TARGET_UI = GUI
 
 GUI.Parent = cloneref(game:GetService("CoreGui"))
 
-local NOCLIP_MODULE = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/CG_NOCLIP_MODULE.lua", true))()
+local NOCLIP_MODULE = {
+    setNoClipEnabled = function()end,
+    IsNoclipEnabled = function()end
+    
+}
 local FEFLING_FUNCTION = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/FE_FLINGFIX.lua", true))()
 
 local Camera = workspace.CurrentCamera
@@ -102,7 +106,7 @@ local function getShopFolder()
 
 	return ignoredFolder:FindFirstChild("Shop")
 end
-
+--local shared = {}
 local function teleport_func_test(teleportPos) -- I'm trying this method - CG
 	if not Player.Character then return end
 	if typeof(teleportPos) ~= "Vector3" then return end
