@@ -1706,13 +1706,13 @@ task.spawn(function()
                 return
             end
             
-            local grenadeBuyPart = shopFolder:FindFirstChild("[Grenade] - $743")
+            local grenadeBuyPart = shopFolder:FindFirstChild("[Grenade] - $765")
             if not grenadeBuyPart then
                 shared.CG_DA_HOOD_GRENADE_NUKING = false
                 return
             end
 
-            if getPlayerCash(Vars.Player) < 743 then
+            if getPlayerCash(Vars.Player) < 765 then
                 shared.CG_DA_HOOD_GRENADE_NUKING = false
                 return
             end
@@ -1727,7 +1727,7 @@ task.spawn(function()
                     end
                 end
 
-                if getPlayerCash(Vars.Player) < 743 then
+                if getPlayerCash(Vars.Player) < 765 then
                     break
                 end
 
