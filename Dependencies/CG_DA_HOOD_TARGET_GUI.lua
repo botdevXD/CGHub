@@ -14,25 +14,25 @@ end
 
 shared.current_CG_DA_HOOD_TARGET_UI = GUI
 
-GUI.Parent = game:GetService("CoreGui")
+GUI.Parent = cloneref(game:GetService("CoreGui"))
 
 local NOCLIP_MODULE = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/CG_NOCLIP_MODULE.lua", true))()
 local FEFLING_FUNCTION = loadstring(game:HttpGet("https://raw.githubusercontent.com/botdevXD/GRUBHUB_TECH/main/FE_FLINGFIX.lua", true))()
 
 local Camera = workspace.CurrentCamera
-local tweenService = game:GetService("TweenService")
-local Players = game:GetService("Players")
+local tweenService = cloneref(game:GetService("TweenService"))
+local Players = cloneref(game:GetService("Players"))
 local Player = Players.LocalPlayer
 local Mouse = Player:GetMouse()
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 
 local MainEvent = ReplicatedStorage:FindFirstChild("MainEvent")
 
 local topBar = GUI.TopBar
 local main = topBar.Main
 local opened = true
-local tweenService = game:GetService("TweenService")
+local tweenService = cloneref(game:GetService("TweenService"))
 local interactButton = topBar.interact
 local exitButton = topBar.exit
 local openSize = main.Size
