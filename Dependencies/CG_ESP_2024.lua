@@ -66,6 +66,7 @@ end
 shared.CG_ESP_FUNCTION_TABLE = esp_Module
 
 local function unloadPlayerESP(foundClient)
+	--[[
 	local leavingClientESPText = shared.CG_ESP_cachedText[foundClient]
 	local leavingClientESPBox = shared.CG_ESP_cachedBoxes[foundClient]
 	local leavingClientESPHealthBar = shared.CG_ESP_cachedHealthBars[foundClient]
@@ -93,10 +94,11 @@ local function unloadPlayerESP(foundClient)
 	shared.CG_ESP_cachedBoxes[foundClient] = nil
 	shared.CG_ESP_cachedHealthBars[foundClient] = nil
 	shared.CG_ESP_cachedArmorBars[foundClient] = nil
+	]]
 end
 
 local function updatePlayerESP(espPlayer)
-	local espCharacter = espPlayer.Character
+	--[[local espCharacter = espPlayer.Character
 	local box = shared.CG_ESP_cachedBoxes[espPlayer] or DrawingNew.new("Square")
 	local HealthBar = shared.CG_ESP_cachedHealthBars[espPlayer] or DrawingNew.new("Square")
 	local ArmorBar = shared.CG_ESP_cachedArmorBars[espPlayer] or DrawingNew.new("Square")
@@ -177,6 +179,7 @@ local function updatePlayerESP(espPlayer)
 
 	text.Visible = IsVisible and shared.CG_ESP_CONFIG.NametagsEnabled or false
 	text.Position = Vector2.new(box.Position.X + (box.Size.X / 2), box.Position.Y - (box.Size.Y / 2) / 10)
+]]
 end
 
 for _, foundClient in ipairs(Players:GetPlayers()) do
