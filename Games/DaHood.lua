@@ -911,7 +911,6 @@ task.spawn(function()
         end
     })
 
-        --[[
     PlayerSection:Toggle({
         Name = "Speed Macro",
         Default = false,
@@ -976,7 +975,6 @@ task.spawn(function()
             end)
         end,
     })
-        ]]
 
     PlayerSection:Toggle({
         Name = "No Slowdown",
