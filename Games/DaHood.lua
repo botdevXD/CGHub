@@ -550,36 +550,6 @@ task.spawn(function()
         humanoidRootPart.CFrame = CFrame.new(teleportPos) * CFrame.new(0, humanoidRootPart.Size.Y / 2, 0)
     end
 
-    local function custom_fireclickdetector(clickPart)
-        if not Vars.Character then return end
-
-        local currentPosition = Vars.Character.PrimaryPart.Position
-
-        if typeof(clickPart) ~= "Instance" or not clickPart:IsA("BasePart") then return end
-
-        local detector = clickPart:FindFirstChildWhichIsA("ClickDetector")
-        if not detector then return end
-
-        local oldCameraCFrame = Camera.CFrame
-
-        Vars.Player.CameraMode = Enum.CameraMode.LockFirstPerson
-
-        teleportFunc(clickPart.Position)
-
-        Camera.CFrame = CFrame.new(Camera.CFrame.Position, clickPart.Position)
-
-        local screenPosition, onScreen = Camera:WorldToScreenPoint(clickPart.Position)
-
-        Services.VirtualInputManager:SendMouseButtonEvent(screenPosition.X, screenPosition.Y, 0, true, game, 1)
-        Services.VirtualInputManager:SendMouseButtonEvent(screenPosition.X, screenPosition.Y, 0, false, game, 1)
-
-        task.wait(.01)
-
-        teleportFunc(currentPosition)
-
-        Vars.Player.CameraMode = Enum.CameraMode.Classic
-    end
-
     local function getPlayerClosestToMouse(checkKnocked)
         local closestPlayer = nil
         local closestDistance = math.huge
@@ -1505,7 +1475,7 @@ task.spawn(function()
                             teleportFunc(OBJ.Position)
         
                             repeat
-                                pcall(custom_fireclickdetector, OBJ)
+                                pcall(fireclickdetector, OBJ)
                                 task.wait(2.5)
                             until not OBJ or OBJ.parent ~= dropsFolder or not shared.CG_DA_HOOD_CONFIG_TABLE.AutoPickupMoneyBool
                         end
