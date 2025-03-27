@@ -25,7 +25,7 @@ task.spawn(function()
     
     local Camera = workspace.CurrentCamera
 
-    --CG_FLY_LIB.EnableAndDisableFly(false)
+    CG_FLY_LIB.EnableAndDisableFly(false)
 
     shared.CG_DA_HOOD_CONNECTIONS = shared.CG_DA_HOOD_CONNECTIONS or {}
 
@@ -754,7 +754,6 @@ task.spawn(function()
     end)
     
     -- PLAYER TAB --
-        --[[
     PlayerSection:Toggle({
         Name = "Fly",
         Default = shared.CG_DA_HOOD_CONFIG_TABLE.fly_toggle,
@@ -763,7 +762,6 @@ task.spawn(function()
             CG_FLY_LIB.EnableAndDisableFly(toggleBool)
         end
     })
-        ]]
 
     PlayerSection:Toggle({
         Name = "Auto Block",
@@ -881,7 +879,6 @@ task.spawn(function()
         end
     })
 
-        --[[
     PlayerSection:Toggle({
         Name = "Speed Macro",
         Default = false,
@@ -946,7 +943,6 @@ task.spawn(function()
             end)
         end,
     })
-        ]]
 
     PlayerSection:Toggle({
         Name = "No Slowdown",
