@@ -197,14 +197,9 @@ task.spawn(function()
         FOV_RADIUS = 75,
     }
 
-    local VisualfovCircle = Drawing.new("Circle")
-    VisualfovCircle.Thickness = 2
-    VisualfovCircle.Transparency = 1
-    VisualfovCircle.Visible = false
-    VisualfovCircle.Color = Color3.fromRGB(255, 255, 255)
-    VisualfovCircle.Filled = false
-    VisualfovCircle.Radius = shared.CG_DA_HOOD_CONFIG_TABLE.FOV_RADIUS
-    shared.CG_FOV_CIRCLE_VISUAL = VisualfovCircle
+    local VisualfovCircle = {
+        Position = Vector2.new()
+    }
     
     Vars.Character = Vars.Player.Character or Vars.Player.CharacterAdded:Wait()
     
