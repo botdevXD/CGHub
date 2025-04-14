@@ -105,6 +105,7 @@ local function updatePlayerESP(espPlayer)
 	text.Text = espPlayer.Name
 	text.color = Color3.fromRGB(255, 255, 255)
 	text.Outline = true
+	text.Center = true
 
 	shared.CG_ESP_cachedText[espPlayer] = shared.CG_ESP_cachedText[espPlayer] or text
 	shared.CG_ESP_cachedBoxes[espPlayer] = shared.CG_ESP_cachedBoxes[espPlayer] or box
