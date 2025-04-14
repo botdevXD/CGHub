@@ -204,6 +204,7 @@ task.spawn(function()
     VisualfovCircle.Color = Color3.fromRGB(255, 255, 255)
     VisualfovCircle.Filled = false
     VisualfovCircle.Radius = shared.CG_DA_HOOD_CONFIG_TABLE.FOV_RADIUS
+    VisualfovCircle.NumberOfSides = 360
     shared.CG_FOV_CIRCLE_VISUAL = VisualfovCircle
     
     Vars.Character = Vars.Player.Character or Vars.Player.CharacterAdded:Wait()
